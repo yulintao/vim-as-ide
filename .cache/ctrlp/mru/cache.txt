@@ -1,0 +1,1 @@
+/home/oops/vim-as-ide/vimrc
