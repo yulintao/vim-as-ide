@@ -11,6 +11,7 @@ Plugin 'VundleVim/Vundle.vim'
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
 Plugin 'tpope/vim-fugitive'
+Plugin 'mileszs/ack.vim'
 "Plugin 'Valloric/YouCompleteMe'
 " plugin from http://vim-scripts.org/vim/scripts.html
 " Plugin 'L9'
@@ -46,18 +47,18 @@ call glaive#Install()
 Glaive codefmt plugin[mappings]
 Glaive codefmt google_java_executable="java -jar /path/to/google-java-format-VERSION-all-deps.jar"
 
-augroup autoformat_settings
-    autocmd FileType bzl AutoFormatBuffer buildifier
-    autocmd FileType c,cpp,proto,javascript AutoFormatBuffer clang-format
-    autocmd FileType dart AutoFormatBuffer dartfmt
-    autocmd FileType go AutoFormatBuffer gofmt
-    autocmd FileType gn AutoFormatBuffer gn
-    autocmd FileType html,css,json AutoFormatBuffer js-beautify
-    autocmd FileType java AutoFormatBuffer google-java-format
-    autocmd FileType python AutoFormatBuffer yapf
+"augroup autoformat_settings
+"    autocmd FileType bzl AutoFormatBuffer buildifier
+"    autocmd FileType c,cpp,proto,javascript AutoFormatBuffer clang-format
+"    autocmd FileType dart AutoFormatBuffer dartfmt
+"    autocmd FileType go AutoFormatBuffer gofmt
+"    autocmd FileType gn AutoFormatBuffer gn
+"    autocmd FileType html,css,json AutoFormatBuffer js-beautify
+"    autocmd FileType java AutoFormatBuffer google-java-format
+"    autocmd FileType python AutoFormatBuffer yapf
     " Alternative: autocmd FileType python AutoFormatBuffer
     " autopep8
-augroup END
+"augroup END
 
 function! CurDir()
     let curdir = substitute(getcwd(), $HOME, "~", "g")
@@ -81,6 +82,7 @@ set cindent
 set smartindent
 set showtabline=2
 set ai!
+set autoread
 " set nocscopetag
 filetype on
 
@@ -101,7 +103,7 @@ filetype plugin indent on    " required
 "
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
-set tags=./tags,tags;$HOME
+set tags=./tags,tags,./TAGS;$HOME
 syntax on
 "set autochdir
 set nu
@@ -117,10 +119,12 @@ let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:30,results:30'
 if executable('ag')
     set grepprg=ag\ --nogroup\ --nocolor
     let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+    let g:ackprg = 'ag --vimgrep'
 endif
 
 if has("cscope")  
     set csprg=/usr/bin/cscope  
+    set cscopequickfix=s-,c-,d-,i-,t-,e-
     set cscopetag
     set csto=1
     set cst  
@@ -135,9 +139,19 @@ if has("cscope")
             exe "cs add" cscope_file cscope_pre
         endif        
     endif  
-endif  
+endif
+" cS delete space at end of line
+nmap cS :%s/\s\+$//g<CR>:noh<CR>
+" delete ^M character
+nmap cM :%s/\r$//g<CR>:noh<CR>
 nmap <F7> :cs find s <C-R>=expand("<cword>")<CR><CR>
 nmap <F8> :cs find c <C-R>=expand("<cword>")<CR><CR>
+nnoremap <C-]> :cs find g <C-R>=expand("<cword>")<CR><CR>
+
+imap <c-k> <Up>
+imap <c-j> <Down>
+imap <c-h> <Left>
+imap <c-l> <Right>
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
