@@ -3,13 +3,11 @@
 使用方法：
 ```
 sudo apt install cscope ctags clang-format
-cd ~
-git clone https://github.com/yulintao/vim-as-ide.git 
-mkdir ~/.vim/bundle/ -p
-cd ~/.vim/bundle/
-git clone https://github.com/VundleVim/Vundle.vim.git
-cp ~/vim-as-ide/vimrc ~/.vimrc
-打开vim,输入命令:BundleInstall
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+             https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+
+打开vim,输入命令:PlugInstall
 
 找到一份代码，然后执行
 ctags --c-kinds=+lpx --languages=all --fields=+iaS -R
@@ -18,6 +16,8 @@ cscope -Rqb
 
 # 快捷键
 ```
+主要的快捷键都在vimrc文件中
+leader       定义为.
 vim 		 用ctrlp忽略搜索的目录是在当前的目录里面建立一个隐藏目录，.gitignore然后把需要忽略的内哦那个添加到里面
 ctrl ]		 跳到函数定义
 ctrl o 		 后跳 ctrl i 前跳
