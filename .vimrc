@@ -181,7 +181,9 @@ nmap <F8> :cs find s <C-R>=expand("<cword>")<CR><CR>
 nmap <leader>df :SignifyDiff<CR>
 nmap <leader>f :LeaderfFunction<CR>
 nmap <leader>b :LeaderfBuffer<CR>
+nmap <leader>t :LeaderfTag<CR>
 nmap <leader>s :Ack! <C-R>=expand("<cword>")<CR><CR>
+nmap <F5> :!cscope -Rqb<CR>:cs reset<CR><CR>
 nmap <F3> :cnext<CR>
 nmap <F4> :cpre<CR>
 nmap <C-P> :LeaderfFile<CR>
