@@ -1,4 +1,4 @@
-execute pathogen#infect()
+"execute pathogen#infect()
 call plug#begin('~/.vim/plugged')
 "call vundle#begin('~/some/path/here')
 
@@ -6,11 +6,12 @@ call plug#begin('~/.vim/plugged')
 
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
+Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-fugitive'
 Plug 'mileszs/ack.vim'
-Plug 'aceofall/gtags.vim'
+"Plug 'aceofall/gtags.vim'
 Plug 'mhinz/vim-signify'
-Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
+"Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
 "Plug 'skywind3000/vim-preview'
 "Plug 'autozimu/LanguageClient-neovim', {
 "    \ 'branch': 'next',
@@ -18,8 +19,9 @@ Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
 "    \ }
 
 " (Optional) Multi-entry selection UI.
-Plug 'junegunn/fzf'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'junegunn/fzf', { 'dir': '~/.vim/plugged/fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+"Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
 "Plug 'w0rp/ale'
 "Plugin 'Valloric/YouCompleteMe'
@@ -105,6 +107,7 @@ filetype on
 "let g:syntastic_check_on_open = 1
 "let g:syntastic_check_on_wq = 0
 "
+let g:fzf_command_prefix = 'Fzf'
 let Tlist_Show_One_File=1
 let Tlist_Exit_OnlyWindow=1
 let Tlist_Show_Menu=1
@@ -178,15 +181,17 @@ nmap cS :%s/\s\+$//g<CR>:noh<CR>
 nmap cM :%s/\r$//g<CR>:noh<CR>
 nmap <F7> :cs find c <C-R>=expand("<cword>")<CR><CR>
 nmap <F8> :cs find s <C-R>=expand("<cword>")<CR><CR>
-nmap <leader>df :SignifyDiff<CR>
-nmap <leader>f :LeaderfFunction<CR>
-nmap <leader>b :LeaderfBuffer<CR>
-nmap <leader>t :LeaderfTag<CR>
-nmap <leader>s :Ack! <C-R>=expand("<cword>")<CR><CR>
-nmap <F5> :!cscope -Rqb<CR>:cs reset<CR><CR>
+nmap <silent> <F9> :NERDTreeFind<CR>
+nmap <silent> <leader>df :Gvdiff<CR>
+nmap <silent> <leader>f :FzfFiles<CR>
+nmap <silent> <leader>b :FzfBuffers<CR>
+nmap <silent> <leader>t :FzfBTags<CR>
+nmap <silent> <leader>T :FzfTags<CR>
+nmap <silent> <leader>st :FzfBLines<CR>
+nmap <silent> <leader>s :Ack! <C-R>=expand("<cword>")<CR><CR>
+nmap <silent> <F5> :!cscope -Rqb<CR>:cs reset<CR><CR>
 nmap <F3> :cnext<CR>
 nmap <F4> :cpre<CR>
-nmap <C-P> :LeaderfFile<CR>
 nmap <C-]> :cs find g <C-R>=expand("<cword>")<CR><CR>
 
 imap <c-k> <Up>
