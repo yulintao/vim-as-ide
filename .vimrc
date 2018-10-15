@@ -2,37 +2,18 @@
 call plug#begin('~/.vim/plugged')
 "call vundle#begin('~/some/path/here')
 
-"Plug 'VundleVim/Vundle.vim'
-
 " Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-fugitive'
 Plug 'mileszs/ack.vim'
 "Plug 'aceofall/gtags.vim'
-Plug 'mhinz/vim-signify'
-"Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
-"Plug 'skywind3000/vim-preview'
-"Plug 'autozimu/LanguageClient-neovim', {
-"    \ 'branch': 'next',
-"    \ 'do': 'bash install.sh',
-"    \ }
 
-" (Optional) Multi-entry selection UI.
 Plug 'junegunn/fzf', { 'dir': '~/.vim/plugged/fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-"Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-
-"Plug 'w0rp/ale'
 "Plugin 'Valloric/YouCompleteMe'
-" plugin from http://vim-scripts.org/vim/scripts.html
-" Plugin 'L9'
 " Git plugin not hosted on GitHub
 " Plugin 'git://git.wincent.com/command-t.git'
-" Plugin 'https://github.com/altercation/solarized.git'
-"Plug 'https://github.com/kien/ctrlp.vim.git'
 Plug 'https://github.com/vim-scripts/taglist.vim.git'
-"Plug 'https://github.com/vim-syntastic/syntastic.git'
 
 " Add maktaba and codefmt to the runtimepath.
 " " (The latter must be installed before it can be used.)
@@ -53,6 +34,7 @@ Plug 'https://github.com/vim-scripts/taglist.vim.git'
 
 " All of your Plugins must be added before the following line
 call plug#end()            " required
+" Put your non-Plugin stuff after this line
 " the glaive#Install() should go after the "call vundle#end()"
 "call glaive#Install()
 " Optional: Enable codefmt's default mappings on the <Leader>= prefix.
@@ -78,7 +60,7 @@ function! CurDir()
 endfunction
 highlight CTagsGlobalVariable ctermfg=5 cterm=bold
 
-highlight StatusLine cterm=bold ctermfg=yellow ctermbg=blue  
+highlight StatusLine cterm=bold ctermfg=yellow ctermbg=blue
 set statusline=[%n]\ %f%m%r%h\ \|\ \ pwd:\ %{CurDir()}\ \ \|%=\|\ %l,%c\ %p%%\ \|\ ascii=%b,hex=%b%{((&fenc==\"\")?\"\":\"\ \|\ \".&fenc)}|
 
 set nocompatible              " be iMproved, required
@@ -117,14 +99,6 @@ let Tlist_Auto_Open=1
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
 "
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
 set tags=./tags,tags,./TAGS;$HOME
 syntax on
 "set autochdir
@@ -154,25 +128,25 @@ endif
 "    \ })
 "endif
 
-if has("cscope")  
-    set csprg=/usr/bin/cscope  
+if has("cscope")
+    set csprg=/usr/bin/cscope
     "set cscopequickfix=s-,c-,d-,i-,t-,e-
     set cscopetag
     set csto=0
-    set cst  
-    set nocsverb  
-    set cspc=5  
-    "add any database in current dir  
-    "if filereadable("GTAGS")  
-    if filereadable("cscope.out")  
-        "let cscope_file=findfile("GTAGS", ".;")  
-        let cscope_file=findfile("cscope.out", ".;")  
+    set cst
+    set nocsverb
+    set cspc=5
+    "add any database in current dir
+    "if filereadable("GTAGS")
+    if filereadable("cscope.out")
+        "let cscope_file=findfile("GTAGS", ".;")
+        let cscope_file=findfile("cscope.out", ".;")
         let cscope_pre = system("pwd")
         let cscope_pre = strpart(cscope_pre,0,strlen(cscope_pre) - 1)
-        if !empty(cscope_file) && filereadable(cscope_file)  
+        if !empty(cscope_file) && filereadable(cscope_file)
             exe "cs add" cscope_file cscope_pre
-        endif        
-    endif  
+        endif
+    endif
 endif
 let mapleader="."
 " cS delete space at end of line
@@ -183,12 +157,12 @@ nmap <F7> :cs find c <C-R>=expand("<cword>")<CR><CR>
 nmap <F8> :cs find s <C-R>=expand("<cword>")<CR><CR>
 nmap <silent> <F9> :NERDTreeFind<CR>
 nmap <silent> <leader>df :Gvdiff<CR>
-nmap <silent> <leader>f :FzfFiles<CR>
-nmap <silent> <leader>b :FzfBuffers<CR>
-nmap <silent> <leader>t :FzfBTags<CR>
-nmap <silent> <leader>T :FzfTags<CR>
-nmap <silent> <leader>st :FzfBLines<CR>
-nmap <silent> <leader>s :Ack! <C-R>=expand("<cword>")<CR><CR>
+nmap <silent> <leader>ff :FzfFiles<CR>
+nmap <silent> <leader>fb :FzfBuffers<CR>
+nmap <silent> <leader>ft :FzfBTags<CR>
+nmap <silent> <leader>fT :FzfTags<CR>
+nmap <silent> <leader>fs :FzfBLines<CR>
+nmap <silent> <leader>ss :Ack! <C-R>=expand("<cword>")<CR><CR>
 nmap <silent> <F5> :!cscope -Rqb<CR>:cs reset<CR><CR>
 nmap <F3> :cnext<CR>
 nmap <F4> :cpre<CR>
