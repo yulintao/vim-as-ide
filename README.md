@@ -39,6 +39,13 @@ nohls		 取消查找选择高亮
 %		括号跳转包括（）{}
 m x		在当前位置打一个标记x，等需要跳回这个位置的时候直接按 'x 即可，跳回现在为止按 ''
 {}()		跳转到一个自然段的开头和结尾
+
+//这部分需要添加到.bashrc中
+export FZF_DEFAULT_COMMAND="fd
+--exclude={*.o,.git,.idea,.vscode,.sass-cache,node_modules,build} --type f"
+export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --preview '(highlight
+-O ansi {} || cat {}) 2> /dev/null | head -500'"
+
 /////////////////////
 下面这部分主要是NERDTree插件的快捷方式
 
