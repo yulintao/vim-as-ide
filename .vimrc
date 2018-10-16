@@ -67,15 +67,15 @@ set nocompatible              " be iMproved, required
 set incsearch
 set hlsearch
 set laststatus=2
-set tw=78 fo+=Mm
+"set tw=78 fo+=Mm
 set tabstop=4
 set shiftwidth=4
 set expandtab
 set history=100
-set cindent
+"set cindent
 set smartindent
 set showtabline=2
-set ai!
+"set ai!
 set autoread
 " set nocscopetag
 filetype on
@@ -94,7 +94,7 @@ let Tlist_Show_One_File=1
 let Tlist_Exit_OnlyWindow=1
 let Tlist_Show_Menu=1
 let Tlist_Auto_Open=1
-"let Tlist_Ctags_Cmd="/usr/bin/ctags"
+let Tlist_Ctags_Cmd="ctags-local"
 "filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
@@ -162,11 +162,11 @@ nmap <silent> <leader>fb :FzfBuffers<CR>
 nmap <silent> <leader>ft :FzfBTags<CR>
 nmap <silent> <leader>fT :FzfTags<CR>
 nmap <silent> <leader>fs :FzfBLines<CR>
+nmap <silent> <leader>fd :cs find g <C-R>=expand("<cword>")<CR><CR>
 nmap <silent> <leader>ss :Ack! <C-R>=expand("<cword>")<CR><CR>
 nmap <silent> <F5> :!cscope -Rqb<CR>:cs reset<CR><CR>
 nmap <F3> :cnext<CR>
 nmap <F4> :cpre<CR>
-nmap <C-]> :cs find g <C-R>=expand("<cword>")<CR><CR>
 
 imap <c-k> <Up>
 imap <c-j> <Down>
