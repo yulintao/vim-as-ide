@@ -6,6 +6,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-fugitive'
 Plug 'mileszs/ack.vim'
+Plug 'easymotion/vim-easymotion'
 "Plug 'aceofall/gtags.vim'
 
 Plug 'junegunn/fzf', { 'dir': '~/.vim/plugged/fzf', 'do': './install --all' }
@@ -89,12 +90,14 @@ filetype on
 "let g:syntastic_check_on_open = 1
 "let g:syntastic_check_on_wq = 0
 "
+let g:EasyMotion_do_mapping = 0
+let g:EasyMotion_smartcase = 1
 let g:fzf_command_prefix = 'Fzf'
 let Tlist_Show_One_File=1
 let Tlist_Exit_OnlyWindow=1
 let Tlist_Show_Menu=1
-let Tlist_Auto_Open=1
-let Tlist_Ctags_Cmd="ctags-local"
+"let Tlist_Auto_Open=1
+let Tlist_Ctags_Cmd="/home/oops/universal-ctags/ctags-work/bin/ctags-local"
 "filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
@@ -105,7 +108,7 @@ syntax on
 set nu
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
 "let g:ctrlp_working_path_mode = 'w'
-"let g:ctrlp_max_files = 0
+"jet g:ctrlp_max_files = 0
 "let g:ctrlp_cache_dir = $PWD.'/.cache/ctrlp'
 "let g:ctrlp_clear_cache_on_exit = 1
 "let g:ctrlp_by_filename = 0
@@ -148,7 +151,7 @@ if has("cscope")
         endif
     endif
 endif
-let mapleader="."
+let mapleader=","
 " cS delete space at end of line
 nmap cS :%s/\s\+$//g<CR>:noh<CR>
 " delete ^M character
@@ -156,6 +159,9 @@ nmap cM :%s/\r$//g<CR>:noh<CR>
 nmap <F7> :cs find c <C-R>=expand("<cword>")<CR><CR>
 nmap <F8> :cs find s <C-R>=expand("<cword>")<CR><CR>
 nmap <silent> <F9> :NERDTreeFind<CR>
+nmap fs <Plug>(easymotion-s2)
+nmap fj <Plug>(easymotion-j)
+nmap fk <Plug>(easymotion-k)
 nmap <silent> <leader>df :Gvdiff<CR>
 nmap <silent> <leader>ff :FzfFiles<CR>
 nmap <silent> <leader>fb :FzfBuffers<CR>
