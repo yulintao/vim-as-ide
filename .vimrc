@@ -78,7 +78,6 @@ set smartindent
 set showtabline=2
 "set ai!
 set autoread
-" set nocscopetag
 filetype on
 
 "set statusline+=%#warningmsg#
@@ -90,6 +89,7 @@ filetype on
 "let g:syntastic_check_on_open = 1
 "let g:syntastic_check_on_wq = 0
 "
+let mapleader=","
 let g:EasyMotion_do_mapping = 0
 let g:EasyMotion_smartcase = 1
 let g:fzf_command_prefix = 'Fzf'
@@ -102,7 +102,7 @@ let Tlist_Ctags_Cmd="/home/oops/universal-ctags/ctags-work/bin/ctags-local"
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
 "
-set tags=./tags,tags,./TAGS;$HOME
+set tags=./TAGS;$HOME
 syntax on
 "set autochdir
 set nu
@@ -135,10 +135,10 @@ if has("cscope")
     set csprg=/usr/bin/cscope
     "set cscopequickfix=s-,c-,d-,i-,t-,e-
     set cscopetag
-    set csto=0
     set cst
+    set csto=0
     set nocsverb
-    set cspc=5
+    set cspc=10
     "add any database in current dir
     "if filereadable("GTAGS")
     if filereadable("cscope.out")
@@ -151,7 +151,6 @@ if has("cscope")
         endif
     endif
 endif
-let mapleader=","
 " cS delete space at end of line
 nmap cS :%s/\s\+$//g<CR>:noh<CR>
 " delete ^M character
@@ -159,7 +158,7 @@ nmap cM :%s/\r$//g<CR>:noh<CR>
 nmap <F7> :cs find c <C-R>=expand("<cword>")<CR><CR>
 nmap <F8> :cs find s <C-R>=expand("<cword>")<CR><CR>
 nmap <silent> <F9> :NERDTreeFind<CR>
-nmap fs <Plug>(easymotion-s2)
+nmap fs <Plug>(easymotion-s)
 nmap fj <Plug>(easymotion-j)
 nmap fk <Plug>(easymotion-k)
 nmap <silent> <leader>df :Gvdiff<CR>
