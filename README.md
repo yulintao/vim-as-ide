@@ -19,8 +19,9 @@ https://github.com/sharkdp/fd/releases/download/v7.1.0/fd-musl_7.1.0_amd64.deb
 
 ```
 
-//这部分需要添加到.bashrc中
+# 这部分需要添加到.bashrc中
 
+```
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 export FZF_DEFAULT_COMMAND="fd --exclude={*.o,.git,.idea,.vscode,.sass-cache,node_modules,build} --type f"
 export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --preview '(highlight -O ansi {} || cat {}) 2> /dev/null | head -500'"
@@ -31,6 +32,7 @@ export RTE_SDK=$PWD/dpdk
 export RTE_TARGET=x86_64-native-linuxapp-gcc
 export LD_LIBRARY_PATH=$PWD
 
+```
 
 # 快捷键
 ```
@@ -60,7 +62,9 @@ m x		在当前位置打一个标记x，等需要跳回这个位置的时候直�
 
 ```
 
-///下面这部分主要是NERDTree插件的快捷方式
+# 下面这部分主要是NERDTree插件的快捷方式
+
+```
 
 o       在已有窗口中打开文件、目录或书签，并跳到该窗口
 go      在已有窗口 中打开文件、目录或书签，但不跳到该窗口
@@ -133,6 +137,8 @@ q       关闭 NerdTree 窗口
 替换一个单词： 
 
 首先找到需要拷贝的单词然后按v+e+y拷贝，然后到需要粘贴的地方按v+e+p粘贴
+
+```
 
 #可选部分
 
