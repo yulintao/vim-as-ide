@@ -11,7 +11,7 @@ Plug 'easymotion/vim-easymotion'
 
 Plug 'junegunn/fzf', { 'dir': '~/.vim/plugged/fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-"Plugin 'Valloric/YouCompleteMe'
+"Plug 'Valloric/YouCompleteMe'
 " Git plugin not hosted on GitHub
 " Plugin 'git://git.wincent.com/command-t.git'
 Plug 'https://github.com/vim-scripts/taglist.vim.git'
@@ -69,13 +69,14 @@ set incsearch
 set hlsearch
 set laststatus=2
 "set tw=78 fo+=Mm
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
 set expandtab
 set history=100
 "set cindent
 set smartindent
 set showtabline=2
+set cino+=(0
 "set ai!
 set autoread
 filetype on
@@ -96,7 +97,20 @@ let g:fzf_command_prefix = 'Fzf'
 let Tlist_Show_One_File=1
 let Tlist_Exit_OnlyWindow=1
 let Tlist_Show_Menu=1
-"let Tlist_Auto_Open=1
+"let g:ycm_confirm_extra_conf=0
+"let g:ycm_collect_identifiers_from_tags_files = 1
+"let g:ycm_seed_identifiers_with_syntax=1
+"let g:ycm_add_preview_to_completeopt = 0
+"set completeopt=menu,menuone
+
+"let g:ycm_filetype_blacklist = {
+"      \ 'tagbar' : 1,
+"      \ 'nerdtree' : 1,
+"      \}
+"let g:ycm_show_diagnostics_ui = 0
+"highlight Pmenu ctermfg=56 ctermbg=256
+"let g:ycm_global_ycm_extra_conf = '~/.vim/plugged/YouCompleteMe/.ycm_extra_conf.py'
+let Tlist_Auto_Open=1
 let Tlist_Ctags_Cmd="/home/oops/universal-ctags/ctags-work/bin/ctags-local"
 "filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
