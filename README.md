@@ -127,22 +127,22 @@ q       关闭 NerdTree 窗口
 :tabp   前一个 tab
 :tabn   后一个 tab
 
+```
 
 
+# 其他部分
+```
 部分代码缩进：
-
 
 首先移动到行首，然后按住ctrl+v进入可视块模式，使用j,k选择要进行调整的代码，然后按数字2然后按 > 向右缩进2个字符，其他操作同理
 
 
 选择复制：
 
-
 先按v然后按往下的键j一直到需要复制的地方，然后按y，然后到需要粘贴的地方按p
 
 
 记录重复的操作
-
 
 先按qa意思是通过a记录接下来的操作，按完qa以后接下来按需要的操作，然后按q结束记录，然后按@a重复刚刚记录的操
 
@@ -152,22 +152,22 @@ q       关闭 NerdTree 窗口
 
 ```
 
-#可选部分
+# 可选部分
 
+```
 修改c程序函数的颜色
 
-
 修改的文件位置为/usr/share/vim/vim74/syntax/c.vim,在最下面加入下面代码
-```
+
 "highlight Functions
 syn match cFunctions "\<[a-zA-Z_][a-zA-Z_0-9]*\>[^()]*)("me=e-2
 syn match cFunctions "\<[a-zA-Z_][a-zA-Z_0-9]*\>\s*("me=e-1
 hi cFunctions term=bold cterm=bold ctermfg=darkcyan
 syn match cClass "\<[a-zA-Z_][a-zA-Z_0-9]*\>::"me=e-2
 hi cClass cterm=bold ctermfg=lightgreen
-```
+
 默认使用 clang-format 格式化代码，如果不希望使用可以将这部分在vimrc 中注释掉
-```
+
 augroup autoformat_settings
     autocmd FileType bzl AutoFormatBuffer buildifier
     autocmd FileType c,cpp,proto,javascript AutoFormatBuffer clang-format
@@ -180,4 +180,5 @@ augroup autoformat_settings
     " Alternative: autocmd FileType python AutoFormatBuffer
     " autopep8
 augroup END
+
 ```
