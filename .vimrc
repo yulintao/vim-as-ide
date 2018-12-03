@@ -72,14 +72,13 @@ set laststatus=2
 set tabstop=2
 set shiftwidth=2
 set expandtab
-set history=100
+set history=1000
+set autoindent
 "set cindent
-set smartindent
 set showtabline=2
 set cino+=(0
 "set ai!
 set autoread
-filetype on
 
 "set statusline+=%#warningmsg#
 "set statusline+=%{SyntasticStatuslineFlag()}
@@ -110,13 +109,13 @@ let Tlist_Show_Menu=1
 "let g:ycm_show_diagnostics_ui = 0
 "highlight Pmenu ctermfg=56 ctermbg=256
 "let g:ycm_global_ycm_extra_conf = '~/.vim/plugged/YouCompleteMe/.ycm_extra_conf.py'
-let Tlist_Auto_Open=1
-let Tlist_Ctags_Cmd="/home/oops/universal-ctags/ctags-work/bin/ctags-local"
-"filetype plugin indent on    " required
+let Tlist_Auto_Open = 1
+let Tlist_Ctags_Cmd="/home/yult/work-proj/universal-ctags/ctags-work/bin/ctags-local"
+filetype plugin indent on
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
 "
-set tags=./TAGS;$HOME
+set tags+=./TAGS
 syntax on
 "set autochdir
 set nu
@@ -135,7 +134,7 @@ if executable('ag')
     let g:ackprg = 'ag --vimgrep'
 endif
 
-"if executable('/home/oops/cquery/work-cquery/bin/cquery')
+"if executable('/home/yult/cquery/work-cquery/bin/cquery')
 "   au User lsp_setup call lsp#register_server({
 "    \ 'name': 'cquery',
 "    \ 'cmd': {server_info->['cquery']},
