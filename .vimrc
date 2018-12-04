@@ -14,7 +14,7 @@ Plug 'junegunn/fzf.vim'
 " Git plugin not hosted on GitHub
 " Plugin 'git://git.wincent.com/command-t.git'
 Plug 'https://github.com/vim-scripts/taglist.vim.git'
-Plug 'Chiel92/vim-autoformat'
+"Plug 'Chiel92/vim-autoformat'
 
 " All of your Plugins must be added before the following line
 call plug#end()            " required
@@ -29,7 +29,7 @@ highlight CTagsGlobalVariable ctermfg=5 cterm=bold
 highlight StatusLine cterm=bold ctermfg=yellow ctermbg=blue
 set statusline=[%n]\ %f%m%r%h\ \|\ \ pwd:\ %{CurDir()}\ \ \|%=\|\ %l,%c\ %p%%\ \|\ ascii=%b,hex=%b%{((&fenc==\"\")?\"\":\"\ \|\ \".&fenc)}|
 
-au BufWrite * :Autoformat
+"au BufWrite * :Autoformat
 set nocompatible              " be iMproved, required
 set incsearch
 set hlsearch
@@ -43,7 +43,8 @@ set history=1000
 "set autoindent
 "set smartindent
 set showtabline=2
-set cino+=(0
+" 回车换行，参数自动对齐到括号
+"set cino+=(0
 "set ai!
 set autoread
 
