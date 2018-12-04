@@ -14,7 +14,9 @@ Plug 'junegunn/fzf.vim'
 " Git plugin not hosted on GitHub
 " Plugin 'git://git.wincent.com/command-t.git'
 Plug 'https://github.com/vim-scripts/taglist.vim.git'
-"Plug 'Chiel92/vim-autoformat'
+Plug 'Chiel92/vim-autoformat'
+" commenter 
+Plug 'scrooloose/nerdcommenter'
 
 " All of your Plugins must be added before the following line
 call plug#end()            " required
@@ -29,13 +31,13 @@ highlight CTagsGlobalVariable ctermfg=5 cterm=bold
 highlight StatusLine cterm=bold ctermfg=yellow ctermbg=blue
 set statusline=[%n]\ %f%m%r%h\ \|\ \ pwd:\ %{CurDir()}\ \ \|%=\|\ %l,%c\ %p%%\ \|\ ascii=%b,hex=%b%{((&fenc==\"\")?\"\":\"\ \|\ \".&fenc)}|
 
-"au BufWrite * :Autoformat
-set nocompatible              " be iMproved, required
+au BufWrite * :Autoformat
+"set nocompatible              " be iMproved, required
 set incsearch
 set hlsearch
 set laststatus=2
 "set tw=78 fo+=Mm
-set tabstop=2
+"set tabstop=2
 set shiftwidth=2
 set expandtab
 set history=1000
@@ -45,8 +47,10 @@ set history=1000
 set showtabline=2
 " 回车换行，参数自动对齐到括号
 "set cino+=(0
-"set ai!
 set autoread
+set nu
+set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
+set tags+=./TAGS
 
 let mapleader=","
 let g:EasyMotion_do_mapping = 0
@@ -66,11 +70,8 @@ filetype plugin indent on
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
 "
-set tags+=./TAGS
 syntax on
 "set autochdir
-set nu
-set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
 if executable('ag')
     set grepprg=ag\ --nogroup\ --nocolor
     let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
