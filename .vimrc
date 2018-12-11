@@ -66,7 +66,7 @@ let Tlist_Show_Menu=1
 
 
 let Tlist_Auto_Open = 1
-let Tlist_Ctags_Cmd="/home/yult/work-proj/universal-ctags/ctags-work/bin/ctags-local"
+let Tlist_Ctags_Cmd="/home/`whoami`/code/universal-ctags/ctags-work/bin/ctags-local"
 filetype plugin indent on
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
