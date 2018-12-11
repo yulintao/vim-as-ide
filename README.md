@@ -23,11 +23,12 @@ https://github.com/sharkdp/fd/releases/download/v7.1.0/fd-musl_7.1.0_amd64.deb
 
 ```
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
-export FZF_DEFAULT_COMMAND="fd --exclude={*.o,.git,.idea,.vscode,.sass-cache,node_modules,build} --type f"
+export FZF_DEFAULT_COMMAND="fd --type f"
 export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --preview '(highlight -O ansi {} || cat {}) 2> /dev/null | head -500'"
+需要进行忽略的目录或者文件都放到.gitignore里面
 
 
-export PATH="$PATH:/home/oops/universal-ctags/ctags-work/bin"
+export PATH="$PATH:/home/`whoami`/universal-ctags/ctags-work/bin"
 export RTE_SDK=$PWD/dpdk
 export RTE_TARGET=x86_64-native-linuxapp-gcc
 export LD_LIBRARY_PATH=$PWD
