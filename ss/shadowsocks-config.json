@@ -1,9 +1,0 @@
-{
-    "server":"qscloud.com",
-    "server_port":88,
-    "local_port":1080,
-    "password":"1q2w3e4r",
-    "method":"aes-256-cfb",
-    "local_address":"127.0.0.1",
-    "dns_server":["1.1.1.1", "8.8.4.4"]
-}
