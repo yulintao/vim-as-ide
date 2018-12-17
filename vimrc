@@ -130,6 +130,7 @@ nmap <silent> <leader>fb :FzfBuffers<CR>
 nmap <silent> <leader>ft :FzfBTags<CR>
 nmap <silent> <leader>fT :FzfTags<CR>
 nmap <silent> <leader>fs :FzfBLines<CR>
+nmap <silent> <leader>h :nohls<CR>
 nmap <silent> <leader>fd :cs find g <C-R>=expand("<cword>")<CR><CR>
 nmap <silent> <leader>ss :Ack! <C-R>=expand("<cword>")<CR><CR>
 nmap <silent> <F5> :!cscope -Rqb<CR>:cs reset<CR><CR>
