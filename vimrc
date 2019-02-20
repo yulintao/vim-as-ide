@@ -14,7 +14,7 @@ Plug 'junegunn/fzf.vim'
 " Git plugin not hosted on GitHub
 " Plugin 'git://git.wincent.com/command-t.git'
 Plug 'https://github.com/vim-scripts/taglist.vim.git'
-Plug 'Chiel92/vim-autoformat'
+"Plug 'Chiel92/vim-autoformat'
 " commenter 
 Plug 'scrooloose/nerdcommenter'
 
@@ -30,11 +30,11 @@ highlight CTagsGlobalVariable ctermfg=5 cterm=bold
 highlight StatusLine cterm=bold ctermfg=yellow ctermbg=blue
 set statusline=[%n]\ %f%m%r%h\ \|\ \ pwd:\ %{CurDir()}\ \ \|%=\|\ %l,%c\ %p%%\ \|\ ascii=%b,hex=%b%{((&fenc==\"\")?\"\":\"\ \|\ \".&fenc)}|
 
-" auto format
-let g:autoformat_autoindent = 0
-let g:autoformat_retab = 0
-let g:autoformat_remove_trailing_spaces = 0
-au BufWrite * :Autoformat
+"" auto format
+"let g:autoformat_autoindent = 0
+"let g:autoformat_retab = 0
+"let g:autoformat_remove_trailing_spaces = 0
+"au BufWrite * :Autoformat
 
 "autocmd  BufReadPost,FileReadPost   *.[ch]  :silent %!indent -l0 -npro -kr -i8 -ts8 -sob -l80 -ss -ncs -cp1
 
@@ -69,14 +69,10 @@ let g:fzf_command_prefix = 'Fzf'
 let Tlist_Show_One_File=1
 let Tlist_Exit_OnlyWindow=1
 let Tlist_Show_Menu=1
-"" auto format
-"let g:autoformat_autoindent = 0
-"let g:autoformat_retab = 0
-"let g:autoformat_remove_trailing_spaces = 0
-
 
 "let Tlist_Auto_Open = 1
-let Tlist_Ctags_Cmd="/home/`whoami`/code/universal-ctags/ctags-work/bin/ctags-local"
+let Tlist_Ctags_Cmd="$HOME/code/universal-ctags/ctags-work/bin/ctags-local"
+"let Tlist_Ctags_Cmd="/home/`whoami`/code/universal-ctags/ctags-work/bin/ctags-local"
 filetype plugin indent on
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
