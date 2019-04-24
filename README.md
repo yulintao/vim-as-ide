@@ -74,6 +74,16 @@ zc 折叠内容
 [c 跳转到上一个差异点
 
 ```
+# nerdComNestedComment 注释
+```
+<leader>ca 表示切换注释为// 或者 /**/
+<leader>ci 插入注释
+<leader>cs smart注释
+<leader>cm 代码块注释
+<leader>cA 在代码后面加注释
+<leader>cu 取消注释
+
+```
 
 # 下面这部分主要是NERDTree插件的快捷方式
 
