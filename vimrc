@@ -76,10 +76,6 @@ let g:fzf_command_prefix = 'Fzf'
 let Tlist_Show_One_File=1
 let Tlist_Exit_OnlyWindow=1
 let Tlist_Show_Menu=1
-"" auto format
-"let g:autoformat_autoindent = 0
-"let g:autoformat_retab = 0
-"let g:autoformat_remove_trailing_spaces = 0
 
 
 "let Tlist_Auto_Open = 1
