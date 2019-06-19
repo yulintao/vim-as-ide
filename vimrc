@@ -14,7 +14,7 @@ Plug 'junegunn/fzf.vim'
 " Git plugin not hosted on GitHub
 " Plugin 'git://git.wincent.com/command-t.git'
 Plug 'https://github.com/vim-scripts/taglist.vim.git'
-"Plug 'Chiel92/vim-autoformat'
+Plug 'Chiel92/vim-autoformat'
 " commenter 
 Plug 'scrooloose/nerdcommenter'
 
@@ -30,10 +30,10 @@ highlight CTagsGlobalVariable ctermfg=5 cterm=bold
 highlight StatusLine cterm=bold ctermfg=yellow ctermbg=blue
 set statusline=[%n]\ %f%m%r%h\ \|\ \ pwd:\ %{CurDir()}\ \ \|%=\|\ %l,%c\ %p%%\ \|\ ascii=%b,hex=%b%{((&fenc==\"\")?\"\":\"\ \|\ \".&fenc)}|
 
-"" auto format
-"let g:autoformat_autoindent = 0
-"let g:autoformat_retab = 0
-"let g:autoformat_remove_trailing_spaces = 0
+" auto format
+let g:autoformat_autoindent = 0
+let g:autoformat_retab = 0
+let g:autoformat_remove_trailing_spaces = 0
 "au BufWrite * :Autoformat
 
 "autocmd  BufReadPost,FileReadPost   *.[ch]  :silent %!indent -l0 -npro -kr -i8 -ts8 -sob -l80 -ss -ncs -cp1
@@ -43,21 +43,28 @@ highlight CursorLine   cterm=NONE ctermbg=black ctermfg=green guibg=NONE guifg=N
 set cul
 "set cuc
 "set nocompatible              " be iMproved, required
+"搜索时高亮
 set incsearch
 set hlsearch
+
 set laststatus=2
 "set tw=78 fo+=Mm
-"set tabstop=2
+set tabstop=4
 set shiftwidth=4
-"set expandtab
+"set noexpandtab
 set history=1000
+set nobackup
+set noswapfile
 set cindent
+" 去掉输入错误的提示音
+set noeb
 "set autoindent
 "set smartindent
 set showtabline=2
 " 回车换行，参数自动对齐到括号
 set cino+=(0,w1,{0,0},:0,t0,+10
 set autoread
+set autowrite
 set nu
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
 set tags+=./TAGS
@@ -69,16 +76,23 @@ let g:fzf_command_prefix = 'Fzf'
 let Tlist_Show_One_File=1
 let Tlist_Exit_OnlyWindow=1
 let Tlist_Show_Menu=1
+"" auto format
+"let g:autoformat_autoindent = 0
+"let g:autoformat_retab = 0
+"let g:autoformat_remove_trailing_spaces = 0
+
 
 "let Tlist_Auto_Open = 1
-let Tlist_Ctags_Cmd="$HOME/code/universal-ctags/ctags-work/bin/ctags-local"
 "let Tlist_Ctags_Cmd="/home/`whoami`/code/universal-ctags/ctags-work/bin/ctags-local"
 filetype plugin indent on
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
 "
 if has("autocmd")
-  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+	au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+	"只关注.c .h的文件，将tab改为空格
+	au BufRead *.[ch] :set expandtab
+	au BufNewFile *.[ch] :set expandtab
 endif
 
 syntax on
@@ -86,7 +100,7 @@ syntax on
 if executable('ag')
     set grepprg=ag\ --nogroup\ --nocolor
     let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-    let g:ackprg = 'ag --vimgrep'
+    let g:ackprg = 'ag'
 endif
 
 "if executable('/home/yult/cquery/work-cquery/bin/cquery')
@@ -138,7 +152,7 @@ nmap <silent> <leader>fs :FzfBLines<CR>
 nmap <silent> <leader>h :nohls<CR>
 nmap <silent> <leader>fd :cs find g <C-R>=expand("<cword>")<CR><CR>
 nmap <silent> <leader>ss :Ack! <C-R>=expand("<cword>")<CR><CR>
-nmap <silent> <F5> :!cscope -Rqb<CR>:cs reset<CR><CR>
+nmap <silent> <F5> :!cscope -Rqb<CR>:cs reset<CR>
 nmap <F3> :cnext<CR>
 nmap <F4> :cpre<CR>
 
