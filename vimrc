@@ -15,7 +15,7 @@ Plug 'junegunn/fzf.vim'
 " Plugin 'git://git.wincent.com/command-t.git'
 
 Plug 'https://github.com/vim-scripts/taglist.vim.git'
-Plug 'Chiel92/vim-autoformat'
+"Plug 'Chiel92/vim-autoformat'
 
 " commenter
 Plug 'scrooloose/nerdcommenter'
@@ -35,13 +35,12 @@ set statusline=[%n]\ %f%m%r%h\ \|\ \ pwd:\ %{CurDir()}\ \ \|%=\|\ %l,%c\ %p%%\ \
 highlight CTagsGlobalVariable ctermfg=5 cterm=bold
 highlight StatusLine cterm=bold ctermfg=yellow ctermbg=blue
 highlight CursorLine   cterm=NONE ctermbg=black ctermfg=green guibg=NONE guifg=NONE
-highlight CursorLine   cterm=NONE ctermbg=black ctermfg=green guibg=NONE guifg=NONE
 
 " auto format
-let g:autoformat_autoindent = 0
-let g:autoformat_retab = 0
-let g:autoformat_remove_trailing_spaces = 0
-au BufWrite * :Autoformat
+"let g:autoformat_autoindent = 0
+"let g:autoformat_retab = 0
+"let g:autoformat_remove_trailing_spaces = 0
+"au BufWrite * :Autoformat
 "autocmd  BufReadPost,FileReadPost   *.[ch]  :silent %!indent -l0 -npro -kr -i8 -ts8 -sob -l80 -ss -ncs -cp1
 
 " 高亮鼠标当前行
