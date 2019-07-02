@@ -37,7 +37,6 @@ set statusline=[%n]\ %f%m%r%h\ \|\ \ pwd:\ %{CurDir()}\ \ \|%=\|\ %l,%c\ %p%%\ \
 highlight CTagsGlobalVariable ctermfg=5 cterm=bold
 highlight StatusLine cterm=bold ctermfg=yellow ctermbg=blue
 highlight CursorLine   cterm=NONE ctermbg=black ctermfg=green guibg=NONE guifg=NONE
-highlight CursorLine   cterm=NONE ctermbg=black ctermfg=green guibg=NONE guifg=NONE
 
 " auto format
 "let g:autoformat_autoindent = 0
@@ -51,9 +50,16 @@ set cul
 " 高亮鼠标当前列
 "set cuc
 "set nocompatible              " be iMproved, required
+"
 "搜索时高亮
 set incsearch
 set hlsearch
+
+" 保存全局变量
+set viminfo+=!
+
+" 不适用vi 的键盘模式
+set nocompatible
 
 set laststatus=2
 "set tw=78 fo+=Mm
@@ -74,8 +80,21 @@ set cindent
 "set autoindent
 "set smartindent
 
-" 去掉输入错误的提示音
+" 去掉vim滴滴声
 set noeb
+
+" 去掉vim 闪烁
+set novisualbell
+
+" 语法高亮
+syntax enable
+syntax on
+
+" 设置正则表达式
+set magic
+
+" vim 右下角显示未完成的命令
+set showcmd
 
 set showtabline=2
 
@@ -125,12 +144,11 @@ if has("autocmd")
 	au BufNewFile *.[ch] :set expandtab
 endif
 
-syntax on
 "set autochdir
 if executable('ag')
-	set grepprg=ag\ --nogroup\ --nocolor
+	set grepprg=ag\ --nogroup\ --nocolor\ --column
 	let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-	let g:ackprg = 'ag'
+	let g:ackprg = 'ag -C --nogroup --nocolor --column'
 endif
 
 if has("cscope")
