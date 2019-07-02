@@ -17,6 +17,8 @@ Plug 'junegunn/fzf.vim'
 Plug 'https://github.com/vim-scripts/taglist.vim.git'
 "Plug 'Chiel92/vim-autoformat'
 
+Plug 'terryma/vim-multiple-cursors'
+
 " commenter
 Plug 'scrooloose/nerdcommenter'
 
@@ -160,7 +162,7 @@ nmap cM :%s/\r$//g<CR>:noh<CR>
 nmap <F7> :cs find c <C-R>=expand("<cword>")<CR><CR>
 nmap <F8> :cs find s <C-R>=expand("<cword>")<CR><CR>
 nmap <silent> <F9> :NERDTreeFind<CR>
-nmap fs <Plug>(easymotion-s)
+nmap fs <Plug>(easymotion-sn)
 nmap fj <Plug>(easymotion-j)
 nmap fk <Plug>(easymotion-k)
 nmap <silent> <leader>df :Gvdiff<CR>
