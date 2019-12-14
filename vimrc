@@ -45,6 +45,10 @@ highlight CursorLine   cterm=NONE ctermbg=black ctermfg=green guibg=NONE guifg=N
 "au BufWrite * :Autoformat
 "autocmd  BufReadPost,FileReadPost   *.[ch]  :silent %!indent -l0 -npro -kr -i8 -ts8 -sob -l80 -ss -ncs -cp1
 
+"Indent C programs according to BSD style(9)
+"set cinoptions=:0,t0,+4,(4
+"autocmd BufNewFile,BufRead *.[ch] setlocal sw=0 ts=8 noet
+
 " 高亮鼠标当前行
 set cul
 " 高亮鼠标当前列
