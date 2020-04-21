@@ -26,6 +26,17 @@ Plug 'scrooloose/nerdcommenter'
 " highlight cxx
 Plug 'jackguo380/vim-lsp-cxx-highlight'
 
+Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/vim-lsp' " vim-lsp
+Plug 'mattn/vim-lsp-settings'
+
+" or
+Plug 'autozimu/LanguageClient-neovim' " LanguageClient-neovim
+" or
+Plug 'neoclide/coc.nvim' " coc.nvim
+" or
+Plug 'neovim/nvim-lsp' " nvim-lsp
+
 " All of your Plugins must be added before the following line
 call plug#end()            " required
 
@@ -139,7 +150,7 @@ let Tlist_Show_Menu=1
 
 " 自动打开Tlist
 "let Tlist_Auto_Open = 1
-"let Tlist_Ctags_Cmd="/home/`whoami`/code/universal-ctags/ctags-work/bin/ctags-local"
+let Tlist_Ctags_Cmd="/home/`whoami`/universal-ctags/ctags-work/bin/ctags-local"
 
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
