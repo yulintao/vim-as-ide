@@ -23,6 +23,9 @@ Plug 'terryma/vim-multiple-cursors'
 " commenter
 Plug 'scrooloose/nerdcommenter'
 
+" highlight cxx
+Plug 'jackguo380/vim-lsp-cxx-highlight'
+
 " All of your Plugins must be added before the following line
 call plug#end()            " required
 
@@ -140,6 +143,10 @@ let Tlist_Show_Menu=1
 
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
+"开启文件类型侦测
+filetype on
+
+"根据文件类型加载对应插件
 filetype plugin indent on
 
 " 自动打开上次文件位置，对于c,h文件把tab转换成4个空格
