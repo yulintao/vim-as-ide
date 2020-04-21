@@ -6,6 +6,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'mileszs/ack.vim'
 Plug 'easymotion/vim-easymotion'
 "Plug 'aceofall/gtags.vim'
+Plug 'derekwyatt/vim-fswitch'
 
 Plug 'junegunn/fzf', { 'dir': '~/.vim/plugged/fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -187,6 +188,8 @@ nmap <silent> <F9> :NERDTreeFind<CR>
 nmap fs <Plug>(easymotion-sn)
 nmap fj <Plug>(easymotion-j)
 nmap fk <Plug>(easymotion-k)
+" swap between .c and .h
+nmap <silent> <Leader>sw :FSHere<CR>
 nmap <silent> <leader>df :Gvdiff<CR>
 nmap <silent> <leader>ff :FzfFiles<CR>
 nmap <silent> <leader>fb :FzfBuffers<CR>
