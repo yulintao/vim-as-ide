@@ -8,6 +8,14 @@ Plug 'easymotion/vim-easymotion'
 "Plug 'aceofall/gtags.vim'
 Plug 'derekwyatt/vim-fswitch'
 
+" markdown 相关 
+" python 图表
+Plug 'godlygeek/tabular'
+Plug 'SirVer/ultisnips',{'for':'markdown'}
+Plug 'mzlogin/vim-markdown-toc'
+Plug 'plasticboy/vim-markdown'
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
+
 Plug 'junegunn/fzf', { 'dir': '~/.vim/plugged/fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 "Plug 'Valloric/YouCompleteMe'
@@ -23,22 +31,48 @@ Plug 'terryma/vim-multiple-cursors'
 " commenter
 Plug 'scrooloose/nerdcommenter'
 
+" highlight start
+Plug 'prabirshrestha/async.vim'
+
+"Plug 'prabirshrestha/vim-lsp' " vim-lsp
+"" or
+"Plug 'neoclide/coc.nvim' " coc.nvim
+"" or
+"Plug 'neovim/nvim-lsp' " nvim-lsp
+"" or
+"" LanguageClient-neovim
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
+
+" Register clangd C++ lanuage server. (Can replaced by vim-lsp-settings)
+"Plug 'mattn/vim-lsp-settings'
+"Plug 'prabirshrestha/asyncomplete.vim'
+"Plug 'prabirshrestha/asyncomplete-lsp.vim'
 " highlight cxx
 Plug 'jackguo380/vim-lsp-cxx-highlight'
-
-Plug 'prabirshrestha/async.vim'
-Plug 'prabirshrestha/vim-lsp' " vim-lsp
-Plug 'mattn/vim-lsp-settings'
-
-" or
-Plug 'autozimu/LanguageClient-neovim' " LanguageClient-neovim
-" or
-Plug 'neoclide/coc.nvim' " coc.nvim
-" or
-Plug 'neovim/nvim-lsp' " nvim-lsp
+" highlight end
 
 " All of your Plugins must be added before the following line
 call plug#end()            " required
+
+" Configuration of LanguageClient-neovim to use ccls with
+" ccls start
+" also see https://github.com/autozimu/LanguageClient-neovim/wiki/ccls
+let s:ccls_settings = {
+         \ 'highlight': { 'lsRanges' : v:true },
+         \ }
+
+let s:ccls_command = ['ccls', '-init=' . json_encode(s:ccls_settings)]
+
+let g:LanguageClient_serverCommands = {
+      \ 'c': s:ccls_command,
+      \ 'cpp': s:ccls_command,
+      \ 'objc': s:ccls_command,
+      \ }
+
+" ccls end 
 
 " 状态栏
 function! CurDir()
