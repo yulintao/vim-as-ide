@@ -8,13 +8,17 @@ Plug 'easymotion/vim-easymotion'
 "Plug 'aceofall/gtags.vim'
 Plug 'derekwyatt/vim-fswitch'
 
-" markdown 相关 
+" markdown 相关
 " python 图表
+" markdown start
 Plug 'godlygeek/tabular'
+Plug 'dhruvasagar/vim-table-mode'
 Plug 'SirVer/ultisnips',{'for':'markdown'}
+Plug 'honza/vim-snippets'
 Plug 'mzlogin/vim-markdown-toc'
 Plug 'plasticboy/vim-markdown'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
+" markdown end
 
 Plug 'junegunn/fzf', { 'dir': '~/.vim/plugged/fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -72,7 +76,11 @@ let g:LanguageClient_serverCommands = {
       \ 'objc': s:ccls_command,
       \ }
 
-" ccls end 
+" ccls end
+
+" markdown confirguration
+let g:vim_markdown_frontmatter = 1
+let g:vim_markdown_folding_disabled = 1
 
 " 状态栏
 function! CurDir()
@@ -118,9 +126,9 @@ set laststatus=2
 "set tw=78 fo+=Mm
 
 " 设置tab转换成4个空格
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
+"set tabstop=4
+"set softtabstop=4
+"set shiftwidth=4
 "set noexpandtab
 set history=1000
 
@@ -129,7 +137,7 @@ set nobackup
 set noswapfile
 
 " 自动对齐
-set cindent
+"set cindent
 "set autoindent
 "set smartindent
 
@@ -237,7 +245,7 @@ nmap cM :%s/\r$//g<CR>:noh<CR>
 nmap <F7> :cs find c <C-R>=expand("<cword>")<CR><CR>
 nmap <F8> :cs find s <C-R>=expand("<cword>")<CR><CR>
 nmap <silent> <F9> :NERDTreeFind<CR>
-nmap fs <Plug>(easymotion-sn)
+nmap fs <Plug>(easymotion-s)
 nmap fj <Plug>(easymotion-j)
 nmap fk <Plug>(easymotion-k)
 " swap between .c and .h
