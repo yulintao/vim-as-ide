@@ -42,6 +42,7 @@ leader       定义为.
 vim 		 用ctrlp忽略搜索的目录是在当前的目录里面建立一个隐藏目录，.gitignore然后把需要忽略的内哦那个添加到里面
 ctrl ]		 跳到函数定义
 ctrl o 		 后跳 ctrl i 前跳
+V		大写`v`表示选中整行
 ctrl hjkl 	 分别为光标定位到不同的窗口
 f7/8		 搜索光标处函数的引用位置
 cs find s xxx 搜索字符串
