@@ -99,7 +99,8 @@ highlight CursorLine   cterm=NONE ctermbg=black ctermfg=green guibg=NONE guifg=N
 let g:autoformat_autoindent = 0
 let g:autoformat_retab = 0
 let g:autoformat_remove_trailing_spaces = 0
-let g:autoformat_verbosemode=1
+" 输出AutoFormat信息
+" let g:autoformat_verbosemode=1
 "au BufWrite * :Autoformat
 autocmd FileType vim,tex let b:autoformat_autoindent=0
 
