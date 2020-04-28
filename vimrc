@@ -36,8 +36,8 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'scrooloose/nerdcommenter'
 
 " highlight start
-Plug 'prabirshrestha/async.vim'
-
+" async used by vim-lsp
+"Plug 'prabirshrestha/async.vim'
 "Plug 'prabirshrestha/vim-lsp' " vim-lsp
 "" or
 "Plug 'neoclide/coc.nvim' " coc.nvim
@@ -45,42 +45,43 @@ Plug 'prabirshrestha/async.vim'
 "Plug 'neovim/nvim-lsp' " nvim-lsp
 "" or
 "" LanguageClient-neovim
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
-
+"Plug 'autozimu/LanguageClient-neovim', {
+"    \ 'branch': 'next',
+"    \ 'do': 'bash install.sh',
+"    \ }
+"
 " Register clangd C++ lanuage server. (Can replaced by vim-lsp-settings)
 "Plug 'mattn/vim-lsp-settings'
 "Plug 'prabirshrestha/asyncomplete.vim'
 "Plug 'prabirshrestha/asyncomplete-lsp.vim'
 " highlight cxx
-Plug 'jackguo380/vim-lsp-cxx-highlight'
+"Plug 'jackguo380/vim-lsp-cxx-highlight'
 " highlight end
 
 " All of your Plugins must be added before the following line
 call plug#end()            " required
 
-" Configuration of LanguageClient-neovim to use ccls with
+"" Configuration of LanguageClient-neovim to use ccls with
 " ccls start
-" also see https://github.com/autozimu/LanguageClient-neovim/wiki/ccls
-let s:ccls_settings = {
-         \ 'highlight': { 'lsRanges' : v:true },
-         \ }
+"" also see https://github.com/autozimu/LanguageClient-neovim/wiki/ccls
+"let s:ccls_settings = {
+"         \ 'highlight': { 'lsRanges' : v:true },
+"         \ }
+"
+"let s:ccls_command = ['ccls', '-init=' . json_encode(s:ccls_settings)]
+"
+"let g:LanguageClient_serverCommands = {
+"      \ 'c': s:ccls_command,
+"      \ 'cpp': s:ccls_command,
+"      \ 'objc': s:ccls_command,
+"      \ }
+"
+"" ccls end
 
-let s:ccls_command = ['ccls', '-init=' . json_encode(s:ccls_settings)]
-
-let g:LanguageClient_serverCommands = {
-      \ 'c': s:ccls_command,
-      \ 'cpp': s:ccls_command,
-      \ 'objc': s:ccls_command,
-      \ }
-
-" ccls end
-
-" markdown confirguration
+" markdown confirguration start
 let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_folding_disabled = 1
+" markdown confirguration end
 
 " statusline
 function! CurDir()
@@ -135,7 +136,7 @@ set laststatus=2
 "set softtabstop=4
 "set shiftwidth=4
 "set noexpandtab
-set history=1000
+set history=10000
 
 " 不备份文件
 set nobackup
