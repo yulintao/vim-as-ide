@@ -28,7 +28,7 @@ Plug 'junegunn/fzf.vim'
 " Plugin 'git://git.wincent.com/command-t.git'
 
 Plug 'https://github.com/vim-scripts/taglist.vim.git'
-"Plug 'Chiel92/vim-autoformat'
+Plug 'Chiel92/vim-autoformat'
 
 Plug 'terryma/vim-multiple-cursors'
 
@@ -78,27 +78,11 @@ let g:LanguageClient_serverCommands = {
 
 " ccls end
 
-" 自动化图表
-function! s:isAtStartOfLine(mapping)
-	  let text_before_cursor = getline('.')[0 : col('.')-1]
-	  let mapping_pattern = '\V' . escape(a:mapping, '\')
-	  let comment_pattern = '\V' . escape(substitute(&l:commentstring, '%s.*$', '', ''), '\')
-	  return (text_before_cursor =~? '^' . ('\v(' . comment_pattern . '\v)?') . '\s*\v' . mapping_pattern . '\v$')
-endfunction
-
-inoreabbrev <expr> <bar><bar>
-	   \ <SID>isAtStartOfLine('\|\|') ?
-	   \ '<c-o>:TableModeEnable<cr><bar><space><bar><left><left>' : '<bar><bar>'
-inoreabbrev <expr> __
-	   \ <SID>isAtStartOfLine('__') ?
-	   \ '<c-o>:silent! TableModeDisable<cr>' : '__'
-" 自动化图表结束
-
 " markdown confirguration
 let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_folding_disabled = 1
 
-" 状态栏
+" statusline
 function! CurDir()
 	let curdir = substitute(getcwd(), $HOME, "~", "g")
 	return curdir
@@ -111,16 +95,20 @@ highlight CTagsGlobalVariable ctermfg=5 cterm=bold
 highlight StatusLine cterm=bold ctermfg=yellow ctermbg=blue
 highlight CursorLine   cterm=NONE ctermbg=black ctermfg=green guibg=NONE guifg=NONE
 
-" auto format
-"let g:autoformat_autoindent = 0
-"let g:autoformat_retab = 0
-"let g:autoformat_remove_trailing_spaces = 0
+" auto format start
+let g:autoformat_autoindent = 0
+let g:autoformat_retab = 0
+let g:autoformat_remove_trailing_spaces = 0
+let g:autoformat_verbosemode=1
 "au BufWrite * :Autoformat
+autocmd FileType vim,tex let b:autoformat_autoindent=0
+
 "autocmd  BufReadPost,FileReadPost   *.[ch]  :silent %!indent -l0 -npro -kr -i8 -ts8 -sob -l80 -ss -ncs -cp1
 
 "Indent C programs according to BSD style(9)
 "set cinoptions=:0,t0,+4,(4
 "autocmd BufNewFile,BufRead *.[ch] setlocal sw=0 ts=8 noet
+" auto format end
 
 " 高亮鼠标当前行
 set cul
@@ -258,6 +246,9 @@ nmap cS :%s/\s\+$//g<CR>:noh<CR>
 " delete ^M character
 nmap cM :%s/\r$//g<CR>:noh<CR>
 
+"nmap <F3> :cnext<CR>
+"nmap <F4> :cpre<CR>
+nmap <silent> <F5> :!cscope -Rqb<CR>:cs reset<CR>
 nmap <F7> :cs find c <C-R>=expand("<cword>")<CR><CR>
 nmap <F8> :cs find s <C-R>=expand("<cword>")<CR><CR>
 nmap <silent> <F9> :NERDTreeFind<CR>
@@ -266,18 +257,22 @@ nmap fj <Plug>(easymotion-j)
 nmap fk <Plug>(easymotion-k)
 " swap between .c and .h
 nmap <silent> <Leader>sw :FSHere<CR>
+" autoformat
+nmap <silent> <Leader>af :Autoformat<CR>
+" git diff 比较当前文件
 nmap <silent> <leader>df :Gvdiff<CR>
+" 快速查找文件
 nmap <silent> <leader>ff :FzfFiles<CR>
+" 在当前缓存区中切换文件
 nmap <silent> <leader>fb :FzfBuffers<CR>
+" 在当前文件中搜索关键字
 nmap <silent> <leader>ft :FzfBTags<CR>
 nmap <silent> <leader>fT :FzfTags<CR>
 nmap <silent> <leader>fs :FzfBLines<CR>
+" 取消高亮
 nmap <silent> <leader>h :nohls<CR>
 nmap <silent> <leader>fd :cs find g <C-R>=expand("<cword>")<CR><CR>
 nmap <silent> <leader>ss :Ack! <C-R>=expand("<cword>")<CR><CR>
-nmap <silent> <F5> :!cscope -Rqb<CR>:cs reset<CR>
-nmap <F3> :cnext<CR>
-nmap <F4> :cpre<CR>
 
 imap <c-k> <Up>
 imap <c-j> <Down>
