@@ -38,7 +38,7 @@ export LD_LIBRARY_PATH=$PWD
 # 快捷键
 ```
 主要的快捷键都在vimrc文件中
-leader       定义为.
+leader       定义为,
 vim 		 用ctrlp忽略搜索的目录是在当前的目录里面建立一个隐藏目录，.gitignore然后把需要忽略的内哦那个添加到里面
 ctrl ]		 跳到函数定义
 ctrl o 		 后跳 ctrl i 前跳
@@ -64,7 +64,7 @@ m x		在当前位置打一个标记x，等需要跳回这个位置的时候直�
 ,tm		启用图表快速格式（dhruvasagar/vim-table-mode）插件
 ,tdc		图表快速删除列
 ,tdd		图表快速删除行
-,tic		插入一列图表
+,tic[C]		当前列表后[前]插入一列图表
 ,tr		图表重新格式化
 
 ```
