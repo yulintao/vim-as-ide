@@ -1,8 +1,11 @@
-(package-initialize)
-(setq use-package-always-ensure t)
+(when (>= emacs-major-version 24)
+  (require 'package)
+  (package-initialize)
+  (setq package-archives '(("gnu"   . "http://elpa.emacs-china.org/gnu/")
+			   ("melpa" . "http://elpa.emacs-china.org/melpa/"))))
 
-;;setq package-archives '(("gnu"   . "http://elpa.emacs-china.org/gnu/")
-;;			("melpa" . "http://elpa.emacs-china.org/melpa/" t)))
+;; common lisp externsion
+(require 'cl)
 
 ;; display line num
 (global-linum-mode 1)
