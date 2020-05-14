@@ -254,9 +254,6 @@ nmap <silent> <F5> :!cscope -Rqb<CR>:cs reset<CR>
 nmap <F7> :cs find c <C-R>=expand("<cword>")<CR><CR>
 nmap <F8> :cs find s <C-R>=expand("<cword>")<CR><CR>
 nmap <silent> <F9> :NERDTreeFind<CR>
-nmap fs <Plug>(easymotion-s)
-nmap fj <Plug>(easymotion-j)
-nmap fk <Plug>(easymotion-k)
 " swap between .c and .h
 nmap <silent> <Leader>sw :FSHere<CR>
 " autoformat
@@ -271,6 +268,13 @@ nmap <silent> <leader>fb :FzfBuffers<CR>
 nmap <silent> <leader>ft :FzfBTags<CR>
 nmap <silent> <leader>fT :FzfTags<CR>
 nmap <silent> <leader>fs :FzfBLines<CR>
+" 查找单个字符
+nmap <silent> <leader>fs <Plug>(easymotion-s)
+" 向下移动
+nmap <silent> <leader>fj <Plug>(easymotion-j)
+" 向上移动
+nmap <silent> <leader>fk <Plug>(easymotion-k)
+
 " 取消高亮
 nmap <silent> <leader>h :nohls<CR>
 nmap <silent> <leader>fd :cs find g <C-R>=expand("<cword>")<CR><CR>
