@@ -7,6 +7,8 @@ Plug 'mileszs/ack.vim'
 Plug 'easymotion/vim-easymotion'
 "Plug 'aceofall/gtags.vim'
 Plug 'derekwyatt/vim-fswitch'
+" vim color themes
+Plug 'kyoz/purify', { 'rtp': 'vim' }
 
 " markdown 相关
 " python 图表
@@ -155,7 +157,13 @@ set novisualbell
 
 " 语法高亮
 syntax enable
-syntax on
+
+" vim color theme start 
+syntax on " This is required
+colorscheme purify
+" vim color theme end
+
+
 
 " 设置正则表达式
 set magic
@@ -257,7 +265,7 @@ nmap <silent> <F9> :NERDTreeFind<CR>
 " swap between .c and .h
 nmap <silent> <Leader>sw :FSHere<CR>
 " autoformat
-nmap <silent> <Leader>af :Autoformat<CR>
+nmap <silent> <Leader>af :Autoformat<CR>:w<CR>
 " git diff 比较当前文件
 nmap <silent> <leader>df :Gvdiff<CR>
 " 快速查找文件
