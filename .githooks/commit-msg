@@ -1,0 +1,53 @@
+#!/bin/sh
+#
+# An example hook script to check the commit log message.
+# Called by "git commit" with one argument, the name of the file
+# that has the commit message.  The hook should exit with non-zero
+# status after issuing an appropriate message if it wants to stop the
+# commit.  The hook is allowed to edit the commit message file.
+#
+# To enable this hook, rename this file to "commit-msg".
+
+# Uncomment the below to add a Signed-off-by line to the message.
+# Doing this in a hook is a bad idea in general, but the prepare-commit-msg
+# hook is more suited to it.
+#
+# SOB=$(git var GIT_AUTHOR_IDENT | sed -n 's/^\(.*>\).*$/Signed-off-by: \1/p')
+# grep -qs "^$SOB" "$1" || echo "$SOB" >> "$1"
+
+# This example catches duplicate Signed-off-by lines.
+#! /bin/bash
+
+# get commit msg
+if [[ $CI_COMMIT_MESSAGE ]]; then
+	msg=$CI_COMMIT_MESSAGE
+else
+	read msg <.git/COMMIT_EDITMSG
+fi
+
+echo -e "\033[33m The commit msg: \033[0m $msg"
+
+# if the msg is merge then skip it
+mergePattern='^Merge '
+if [[ $msg =~ $mergePattern ]]; then
+	echo -e "\033[32m skip the merge, commit success! \033[0m"
+	exit 0
+fi
+
+# check the commit msg
+maxLength=50
+length=${#msg}
+pattern='^(feat|fix|hotfix|test|refactor|docs|style|chroe)\(.*\):.*$'
+
+if [[ $msg =~ $pattern ]]; then
+	if [[ $length -gt $maxLength ]]; then
+		echo -e "\033[31m Error: the msg over max length \033[m"
+		exit 1
+	fi
+	echo -e "\033[32m commit success! \033[0m"
+else
+	echo -e "\033[31m Error: the commit message is irregular \033[m"
+	echo -e "\033[31m Error: type must be one of [feat,fix,hotfix,docs,style,refactor,test,chore] \033[m"
+	echo -e "\033[32m eg: feat(module): This is msg title \033[m"
+	exit 1
+fi
