@@ -277,11 +277,11 @@ nmap <silent> <leader>ft :FzfBTags<CR>
 nmap <silent> <leader>fT :FzfTags<CR>
 nmap <silent> <leader>fs :FzfBLines<CR>
 " 查找单个字符
-nmap <silent> <leader>fs <Plug>(easymotion-s)
+nmap fs<Plug>(easymotion-s)
 " 向下移动
-nmap <silent> <leader>fj <Plug>(easymotion-j)
+nmap fj<Plug>(easymotion-j)
 " 向上移动
-nmap <silent> <leader>fk <Plug>(easymotion-k)
+nmap fk<Plug>(easymotion-k)
 
 " 取消高亮
 nmap <silent> <leader>h :nohls<CR>

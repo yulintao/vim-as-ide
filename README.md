@@ -179,6 +179,8 @@ q       关闭 NerdTree 窗口
 
 # 可选部分
 
+`:CurrentFormatter`查看当前的format程序
+
 ```
 修改c程序函数的颜色
 
