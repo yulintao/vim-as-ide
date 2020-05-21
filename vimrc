@@ -45,13 +45,13 @@ Plug 'scrooloose/nerdcommenter'
 "Plug 'neoclide/coc.nvim' " coc.nvim
 "" or
 "Plug 'neovim/nvim-lsp' " nvim-lsp
-"" or
-"" LanguageClient-neovim
+" or
+" LanguageClient-neovim
 "Plug 'autozimu/LanguageClient-neovim', {
 "    \ 'branch': 'next',
 "    \ 'do': 'bash install.sh',
 "    \ }
-"
+""
 " Register clangd C++ lanuage server. (Can replaced by vim-lsp-settings)
 "Plug 'mattn/vim-lsp-settings'
 "Plug 'prabirshrestha/asyncomplete.vim'
@@ -65,19 +65,19 @@ call plug#end()            " required
 
 "" Configuration of LanguageClient-neovim to use ccls with
 " ccls start
-"" also see https://github.com/autozimu/LanguageClient-neovim/wiki/ccls
+" also see https://github.com/autozimu/LanguageClient-neovim/wiki/ccls
 "let s:ccls_settings = {
 "         \ 'highlight': { 'lsRanges' : v:true },
 "         \ }
-"
+
 "let s:ccls_command = ['ccls', '-init=' . json_encode(s:ccls_settings)]
-"
+
 "let g:LanguageClient_serverCommands = {
 "      \ 'c': s:ccls_command,
 "      \ 'cpp': s:ccls_command,
 "      \ 'objc': s:ccls_command,
 "      \ }
-"
+
 "" ccls end
 
 " markdown confirguration start
@@ -277,11 +277,11 @@ nmap <silent> <leader>ft :FzfBTags<CR>
 nmap <silent> <leader>fT :FzfTags<CR>
 nmap <silent> <leader>fs :FzfBLines<CR>
 " 查找单个字符
-nmap fs<Plug>(easymotion-s)
+nmap fs <Plug>(easymotion-s)
 " 向下移动
-nmap fj<Plug>(easymotion-j)
+nmap fj <Plug>(easymotion-j)
 " 向上移动
-nmap fk<Plug>(easymotion-k)
+nmap fk <Plug>(easymotion-k)
 
 " 取消高亮
 nmap <silent> <leader>h :nohls<CR>

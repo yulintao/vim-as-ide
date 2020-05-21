@@ -153,7 +153,11 @@ q       关闭 NerdTree 窗口
 :tabn   后一个 tab
 
 ```
-
+# 代码预览
+```
+Ctrl - W + ] 用新窗口预览
+Ctrl - W + } 使用preview窗口预览
+```
 
 # 其他部分
 ```
