@@ -24,6 +24,7 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 
 Plug 'junegunn/fzf', { 'dir': '~/.vim/plugged/fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+
 "Plug 'Valloric/YouCompleteMe'
 
 " Git plugin not hosted on GitHub
@@ -163,8 +164,6 @@ syntax on " This is required
 colorscheme purify
 " vim color theme end
 
-
-
 " 设置正则表达式
 set magic
 
@@ -190,8 +189,17 @@ set nu
 " 忽略目录
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
 
-" 设置tags文件路径
+" 设置TAGS文件路径
 set tags+=./TAGS
+let Tlist_Show_One_File=1
+let Tlist_Exit_OnlyWindow=1
+let Tlist_Show_Menu=1
+let Tlist_Use_Right_Window=1
+let Tlist_Auto_Update=1
+" 自动打开Tlist
+"let Tlist_Auto_Open = 1
+let Tlist_Ctags_Cmd="/home/`whoami`/universal-ctags/ctags-work/bin/ctags-local"
+
 
 " 设置vim leader 符号
 let mapleader=","
@@ -200,13 +208,6 @@ let mapleader=","
 let g:EasyMotion_do_mapping = 0
 let g:EasyMotion_smartcase = 1
 let g:fzf_command_prefix = 'Fzf'
-let Tlist_Show_One_File=1
-let Tlist_Exit_OnlyWindow=1
-let Tlist_Show_Menu=1
-
-" 自动打开Tlist
-"let Tlist_Auto_Open = 1
-let Tlist_Ctags_Cmd="/home/`whoami`/universal-ctags/ctags-work/bin/ctags-local"
 
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
