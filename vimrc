@@ -22,6 +22,10 @@ Plug 'plasticboy/vim-markdown'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 " markdown end
 
+" drawit 画图
+Plug 'vim-scripts/DrawIt'
+" drawit end
+
 Plug 'junegunn/fzf', { 'dir': '~/.vim/plugged/fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
@@ -86,18 +90,15 @@ let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_folding_disabled = 1
 " markdown confirguration end
 
-" statusline
-function! CurDir()
-	let curdir = substitute(getcwd(), $HOME, "~", "g")
-	return curdir
-endfunction
-
-set statusline=[%n]\ %f%m%r%h\ \|\ \ pwd:\ %{CurDir()}\ \ \|%=\|\ %l,%c\ %p%%\ \|\ ascii=%b,hex=%b%{((&fenc==\"\")?\"\":\"\ \|\ \".&fenc)}|
-
-" 高亮
-highlight CTagsGlobalVariable ctermfg=5 cterm=bold
-highlight StatusLine cterm=bold ctermfg=yellow ctermbg=blue
-highlight CursorLine   cterm=NONE ctermbg=black ctermfg=green guibg=NONE guifg=NONE
+" 设置nerdTree
+"let NERDTreeChDirMode=1
+"let NERDTreeShowBookmarks=1
+"let NERDTreeShowFiles=1
+"let NERDTreeWinPos=left
+"let g:NERDTreeHijackNetrw = 1
+"au VimEnter NERD_tree_1 enew | execute 'NERDTree '.argv()[0]
+"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" nerdTree end
 
 " auto format start
 let g:autoformat_autoindent = 0
@@ -110,10 +111,17 @@ autocmd FileType vim,tex let b:autoformat_autoindent=0
 
 "autocmd  BufReadPost,FileReadPost   *.[ch]  :silent %!indent -l0 -npro -kr -i8 -ts8 -sob -l80 -ss -ncs -cp1
 
-"Indent C programs according to BSD style(9)
-"set cinoptions=:0,t0,+4,(4
-"autocmd BufNewFile,BufRead *.[ch] setlocal sw=0 ts=8 noet
-" auto format end
+" 高亮
+highlight CTagsGlobalVariable ctermfg=5 cterm=bold
+highlight StatusLine cterm=bold ctermfg=yellow ctermbg=blue
+highlight CursorLine   cterm=NONE ctermbg=black ctermfg=green guibg=NONE guifg=NONE
+" statusline
+function! CurDir()
+	let curdir = substitute(getcwd(), $HOME, "~", "g")
+	return curdir
+endfunction
+
+set statusline=[%n]\ %f%m%r%h\ \|\ \ pwd:\ %{CurDir()}\ \ \|%=\|\ %l,%c\ %p%%\ \|\ ascii=%b,hex=%b%{((&fenc==\"\")?\"\":\"\ \|\ \".&fenc)}|
 
 " 高亮鼠标当前行
 set cul
@@ -159,7 +167,7 @@ set novisualbell
 " 语法高亮
 syntax enable
 
-" vim color theme start 
+" vim color theme start
 syntax on " This is required
 colorscheme purify
 " vim color theme end
@@ -199,7 +207,6 @@ let Tlist_Auto_Update=1
 " 自动打开Tlist
 "let Tlist_Auto_Open = 1
 let Tlist_Ctags_Cmd="/home/`whoami`/universal-ctags/ctags-work/bin/ctags-local"
-
 
 " 设置vim leader 符号
 let mapleader=","
