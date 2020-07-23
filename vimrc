@@ -9,6 +9,8 @@ Plug 'easymotion/vim-easymotion'
 Plug 'derekwyatt/vim-fswitch'
 " vim color themes
 Plug 'kyoz/purify', { 'rtp': 'vim' }
+Plug 'aceofall/gtags.vim'
+Plug 'joereynolds/gtags-scope'
 
 " markdown 相关
 " python 图表
@@ -37,7 +39,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'https://github.com/vim-scripts/taglist.vim.git'
 Plug 'Chiel92/vim-autoformat'
 
-Plug 'terryma/vim-multiple-cursors'
+"Plug 'terryma/vim-multiple-cursors'
 
 " commenter
 Plug 'scrooloose/nerdcommenter'
@@ -90,14 +92,17 @@ let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_folding_disabled = 1
 " markdown confirguration end
 
-" 设置nerdTree
+" 设置nerdTree 
 "let NERDTreeChDirMode=1
 "let NERDTreeShowBookmarks=1
 "let NERDTreeShowFiles=1
 "let NERDTreeWinPos=left
 "let g:NERDTreeHijackNetrw = 1
-"au VimEnter NERD_tree_1 enew | execute 'NERDTree '.argv()[0]
-"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" 自动打开
+"autocmd StdinReadPre * let s:std_in=1
+"autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+" 只有一个窗口时关闭NerdTree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 " nerdTree end
 
 " auto format start
@@ -167,7 +172,7 @@ set novisualbell
 " 语法高亮
 syntax enable
 
-" vim color theme start
+" vim color theme start 
 syntax on " This is required
 colorscheme purify
 " vim color theme end
@@ -198,7 +203,7 @@ set nu
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
 
 " 设置TAGS文件路径
-set tags+=./TAGS
+set tags+=./tags
 let Tlist_Show_One_File=1
 let Tlist_Exit_OnlyWindow=1
 let Tlist_Show_Menu=1
@@ -206,7 +211,14 @@ let Tlist_Use_Right_Window=1
 let Tlist_Auto_Update=1
 " 自动打开Tlist
 "let Tlist_Auto_Open = 1
-let Tlist_Ctags_Cmd="/home/`whoami`/universal-ctags/ctags-work/bin/ctags-local"
+"let Tlist_Ctags_Cmd="/home/`whoami`/universal-ctags/ctags-work/bin/ctags-local"
+"let Tlist_Ctags_Cmd="/usr/bin/gtags-cscope"
+set cscopetag " 使用 cscope 作为 tags 命令
+set cscopeprg='gtags-cscope' " 使用 gtags-cscope 代替 cscope
+
+let GtagsCscope_Auto_Load = 1
+let CtagsCscope_Auto_Map = 1
+let GtagsCscope_Quiet = 1
 
 " 设置vim leader 符号
 let mapleader=","
@@ -227,8 +239,8 @@ filetype plugin indent on
 " 自动打开上次文件位置，对于c,h文件把tab转换成4个空格
 if has("autocmd")
 	au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-	au BufRead *.[ch] :set expandtab
-	au BufNewFile *.[ch] :set expandtab
+	"au BufRead *.[ch] :set expandtab
+	"au BufNewFile *.[ch] :set expandtab
 endif
 
 "set autochdir
@@ -238,26 +250,26 @@ if executable('ag')
 	let g:ackprg = 'ag -C --nogroup --nocolor --column'
 endif
 
-if has("cscope")
-    set csprg=/usr/bin/cscope
-    "set cscopequickfix=s-,c-,d-,i-,t-,e-
-    set cscopetag
-    set cst
-    set csto=0
-    set nocsverb
-    set cspc=10
-    "add any database in current dir
-    "if filereadable("GTAGS")
-    if filereadable("cscope.out")
-        "let cscope_file=findfile("GTAGS", ".;")
-        let cscope_file=findfile("cscope.out", ".;")
-        let cscope_pre = system("pwd")
-        let cscope_pre = strpart(cscope_pre,0,strlen(cscope_pre) - 1)
-        if !empty(cscope_file) && filereadable(cscope_file)
-            exe "cs add" cscope_file cscope_pre
-        endif
-    endif
-endif
+"if has("cscope")
+"    set csprg=/usr/bin/cscope
+"    "set cscopequickfix=s-,c-,d-,i-,t-,e-
+"    set cscopetag
+"    set cst
+"    set csto=0
+"    set nocsverb
+"    set cspc=10
+"    "add any database in current dir
+"    "if filereadable("GTAGS")
+"    if filereadable("cscope.out")
+"        "let cscope_file=findfile("GTAGS", ".;")
+"        let cscope_file=findfile("cscope.out", ".;")
+"        let cscope_pre = system("pwd")
+"        let cscope_pre = strpart(cscope_pre,0,strlen(cscope_pre) - 1)
+"        if !empty(cscope_file) && filereadable(cscope_file)
+"            exe "cs add" cscope_file cscope_pre
+"        endif
+"    endif
+"endif
 
 " cS delete space at end of line
 nmap cS :%s/\s\+$//g<CR>:noh<CR>
@@ -266,9 +278,10 @@ nmap cM :%s/\r$//g<CR>:noh<CR>
 
 "nmap <F3> :cnext<CR>
 "nmap <F4> :cpre<CR>
-nmap <silent> <F5> :!cscope -Rqb<CR>:cs reset<CR>
+"nmap <silent> <F5> :!cscope -Rqb<CR>:cs reset<CR>
 nmap <F7> :cs find c <C-R>=expand("<cword>")<CR><CR>
 nmap <F8> :cs find s <C-R>=expand("<cword>")<CR><CR>
+nnoremap <C-]> :cs find g <C-R>=expand("<cword>")<CR><CR>
 nmap <silent> <F9> :NERDTreeFind<CR>
 " swap between .c and .h
 nmap <silent> <Leader>sw :FSHere<CR>
