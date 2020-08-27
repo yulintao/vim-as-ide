@@ -11,6 +11,7 @@ Plug 'derekwyatt/vim-fswitch'
 Plug 'kyoz/purify', { 'rtp': 'vim' }
 Plug 'aceofall/gtags.vim'
 Plug 'joereynolds/gtags-scope'
+Plug 'ronakg/quickr-cscope.vim'
 
 " markdown 相关
 " python 图表
@@ -91,6 +92,10 @@ call plug#end()            " required
 let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_folding_disabled = 1
 " markdown confirguration end
+
+let g:quickr_cscope_program = "gtags-cscope"
+let g:quickr_cscope_db_file = "GTAGS"
+let g:quickr_cscope_autoload_db = 0
 
 " 设置nerdTree 
 "let NERDTreeChDirMode=1
@@ -207,7 +212,7 @@ set tags+=./tags
 let Tlist_Show_One_File=1
 let Tlist_Exit_OnlyWindow=1
 let Tlist_Show_Menu=1
-let Tlist_Use_Right_Window=1
+let Tlist_Use_Right_Window=0
 let Tlist_Auto_Update=1
 " 自动打开Tlist
 "let Tlist_Auto_Open = 1
@@ -215,6 +220,7 @@ let Tlist_Auto_Update=1
 "let Tlist_Ctags_Cmd="/usr/bin/gtags-cscope"
 set cscopetag " 使用 cscope 作为 tags 命令
 set cscopeprg='gtags-cscope' " 使用 gtags-cscope 代替 cscope
+"set cscopequickfix=s-,c-,d-,i-,t-,e-,a-
 
 let GtagsCscope_Auto_Load = 1
 let CtagsCscope_Auto_Map = 1
@@ -244,11 +250,11 @@ if has("autocmd")
 endif
 
 "set autochdir
-if executable('ag')
-	set grepprg=ag\ --nogroup\ --nocolor\ --column
-	let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-	let g:ackprg = 'ag -C --nogroup --nocolor --column'
-endif
+"if executable('ag')
+"	set grepprg=ag\ --nogroup\ --nocolor\ --column
+"	let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+"	let g:ackprg = 'ag -C --nogroup --nocolor --column'
+"endif
 
 "if has("cscope")
 "    set csprg=/usr/bin/cscope
@@ -278,10 +284,10 @@ nmap cM :%s/\r$//g<CR>:noh<CR>
 
 "nmap <F3> :cnext<CR>
 "nmap <F4> :cpre<CR>
-"nmap <silent> <F5> :!cscope -Rqb<CR>:cs reset<CR>
+nmap <silent> <F5> :!gtags -i <CR>:cs reset<CR>
 nmap <F7> :cs find c <C-R>=expand("<cword>")<CR><CR>
 nmap <F8> :cs find s <C-R>=expand("<cword>")<CR><CR>
-nnoremap <C-]> :cs find g <C-R>=expand("<cword>")<CR><CR>
+"nnoremap <C-]> :cs find g <C-R>=expand("<cword>")<CR><CR>
 nmap <silent> <F9> :NERDTreeFind<CR>
 " swap between .c and .h
 nmap <silent> <Leader>sw :FSHere<CR>
@@ -306,7 +312,6 @@ nmap fk <Plug>(easymotion-k)
 
 " 取消高亮
 nmap <silent> <leader>h :nohls<CR>
-nmap <silent> <leader>fd :cs find g <C-R>=expand("<cword>")<CR><CR>
 nmap <silent> <leader>ss :Ack! <C-R>=expand("<cword>")<CR><CR>
 
 imap <c-k> <Up>
