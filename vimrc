@@ -5,13 +5,19 @@ Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-fugitive'
 Plug 'mileszs/ack.vim'
 Plug 'easymotion/vim-easymotion'
-"Plug 'aceofall/gtags.vim'
 Plug 'derekwyatt/vim-fswitch'
+
 " vim color themes
 Plug 'kyoz/purify', { 'rtp': 'vim' }
-Plug 'aceofall/gtags.vim'
-Plug 'joereynolds/gtags-scope'
-Plug 'ronakg/quickr-cscope.vim'
+
+" Tags use gtags automatic management
+"Plug 'aceofall/gtags.vim'
+"Plug 'joereynolds/gtags-scope'
+"Plug 'ronakg/quickr-cscope.vim'
+" or
+Plug 'ludovicchabant/vim-gutentags'
+Plug 'skywind3000/gutentags_plus'
+Plug 'skywind3000/vim-preview'
 
 " markdown 相关
 " python 图表
@@ -31,6 +37,8 @@ Plug 'vim-scripts/DrawIt'
 
 Plug 'junegunn/fzf', { 'dir': '~/.vim/plugged/fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+
+"Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
 
 "Plug 'Valloric/YouCompleteMe'
 
@@ -93,11 +101,32 @@ let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_folding_disabled = 1
 " markdown confirguration end
 
-let g:quickr_cscope_program = "gtags-cscope"
-let g:quickr_cscope_db_file = "GTAGS"
-let g:quickr_cscope_autoload_db = 0
+"let GtagsCscope_Auto_Load = 1
+"let CtagsCscope_Auto_Map = 1
+"let GtagsCscope_Quiet = 1
+"let g:quickr_cscope_program = "gtags-cscope"
+"let g:quickr_cscope_db_file = "GTAGS"
+"let g:quickr_cscope_autoload_db = 0
+" 自动打开Tlist
+"let Tlist_Auto_Open = 1
+"let Tlist_Ctags_Cmd="/usr/bin/gtags-cscope"
+"set cscopetag " 使用 cscope 作为 tags 命令
+"set cscopeprg='gtags-cscope' " 使用 gtags-cscope 代替 cscope
+"set cscopequickfix=s-,c-,d-,i-,t-,e-,a-
 
-" 设置nerdTree 
+
+" enable gtags module start
+let g:gutentags_modules = ['ctags', 'gtags_cscope']
+" config project root markers.
+let g:gutentags_project_root = ['.root']
+" generate datebases in my cache directory, prevent gtags files polluting my project
+" let g:gutentags_cache_dir = expand('~/.cache/tags')
+" change focus to quickfix window after search (optional).
+let g:gutentags_plus_switch = 1
+let g:gutentags_plus_nomap = 1
+" enable gtags module end
+
+" 设置nerdTree
 "let NERDTreeChDirMode=1
 "let NERDTreeShowBookmarks=1
 "let NERDTreeShowFiles=1
@@ -177,7 +206,7 @@ set novisualbell
 " 语法高亮
 syntax enable
 
-" vim color theme start 
+" vim color theme start
 syntax on " This is required
 colorscheme purify
 " vim color theme end
@@ -187,6 +216,7 @@ set magic
 
 " vim 右下角显示未完成的命令
 set showcmd
+set t_Co=256
 
 set showtabline=2
 
@@ -214,17 +244,6 @@ let Tlist_Exit_OnlyWindow=1
 let Tlist_Show_Menu=1
 let Tlist_Use_Right_Window=0
 let Tlist_Auto_Update=1
-" 自动打开Tlist
-"let Tlist_Auto_Open = 1
-"let Tlist_Ctags_Cmd="/home/`whoami`/universal-ctags/ctags-work/bin/ctags-local"
-"let Tlist_Ctags_Cmd="/usr/bin/gtags-cscope"
-set cscopetag " 使用 cscope 作为 tags 命令
-set cscopeprg='gtags-cscope' " 使用 gtags-cscope 代替 cscope
-"set cscopequickfix=s-,c-,d-,i-,t-,e-,a-
-
-let GtagsCscope_Auto_Load = 1
-let CtagsCscope_Auto_Map = 1
-let GtagsCscope_Quiet = 1
 
 " 设置vim leader 符号
 let mapleader=","
@@ -249,32 +268,14 @@ if has("autocmd")
 	"au BufNewFile *.[ch] :set expandtab
 endif
 
+autocmd FileType qf nnoremap <silent><buffer> p :PreviewQuickfix<cr>
+autocmd FileType qf nnoremap <silent><buffer> P :PreviewClose<cr>
+
 "set autochdir
 "if executable('ag')
 "	set grepprg=ag\ --nogroup\ --nocolor\ --column
 "	let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 "	let g:ackprg = 'ag -C --nogroup --nocolor --column'
-"endif
-
-"if has("cscope")
-"    set csprg=/usr/bin/cscope
-"    "set cscopequickfix=s-,c-,d-,i-,t-,e-
-"    set cscopetag
-"    set cst
-"    set csto=0
-"    set nocsverb
-"    set cspc=10
-"    "add any database in current dir
-"    "if filereadable("GTAGS")
-"    if filereadable("cscope.out")
-"        "let cscope_file=findfile("GTAGS", ".;")
-"        let cscope_file=findfile("cscope.out", ".;")
-"        let cscope_pre = system("pwd")
-"        let cscope_pre = strpart(cscope_pre,0,strlen(cscope_pre) - 1)
-"        if !empty(cscope_file) && filereadable(cscope_file)
-"            exe "cs add" cscope_file cscope_pre
-"        endif
-"    endif
 "endif
 
 " cS delete space at end of line
@@ -284,10 +285,6 @@ nmap cM :%s/\r$//g<CR>:noh<CR>
 
 "nmap <F3> :cnext<CR>
 "nmap <F4> :cpre<CR>
-nmap <silent> <F5> :!gtags -i <CR>:cs reset<CR>
-nmap <F7> :cs find c <C-R>=expand("<cword>")<CR><CR>
-nmap <F8> :cs find s <C-R>=expand("<cword>")<CR><CR>
-"nnoremap <C-]> :cs find g <C-R>=expand("<cword>")<CR><CR>
 nmap <silent> <F9> :NERDTreeFind<CR>
 " swap between .c and .h
 nmap <silent> <Leader>sw :FSHere<CR>
@@ -322,3 +319,14 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
+
+noremap <silent> <leader>gs :GscopeFind s <C-R><C-W><cr>
+noremap <silent> <leader>gg :GscopeFind g <C-R><C-W><cr>
+noremap <silent> <leader>gc :GscopeFind c <C-R><C-W><cr>
+"noremap <silent> <leader>gt :GscopeFind t <C-R><C-W><cr>
+"noremap <silent> <leader>ge :GscopeFind e <C-R><C-W><cr>
+"noremap <silent> <leader>gf :GscopeFind f <C-R>=expand("<cfile>")<cr><cr>
+"noremap <silent> <leader>gi :GscopeFind i <C-R>=expand("<cfile>")<cr><cr>
+"noremap <silent> <leader>gd :GscopeFind d <C-R><C-W><cr>
+"noremap <silent> <leader>ga :GscopeFind a <C-R><C-W><cr>
+"noremap <silent> <leader>gz :GscopeFind z <C-R><C-W><cr>
