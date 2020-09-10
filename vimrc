@@ -320,9 +320,12 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
-noremap <silent> <leader>gs :GscopeFind s <C-R><C-W><cr>
-noremap <silent> <leader>gg :GscopeFind g <C-R><C-W><cr>
-noremap <silent> <leader>gc :GscopeFind c <C-R><C-W><cr>
+noremap <silent> <leader>qo :10 copen <CR>
+noremap <silent> <leader>qc :cclose <CR>
+
+noremap <silent> <leader>gs :GscopeFind s <C-R><C-W><CR>
+noremap <silent> <leader>gg :GscopeFind g <C-R><C-W><CR>
+noremap <silent> <leader>gc :GscopeFind c <C-R><C-W><CR>
 "noremap <silent> <leader>gt :GscopeFind t <C-R><C-W><cr>
 "noremap <silent> <leader>ge :GscopeFind e <C-R><C-W><cr>
 "noremap <silent> <leader>gf :GscopeFind f <C-R>=expand("<cfile>")<cr><cr>
