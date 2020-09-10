@@ -11,10 +11,6 @@ Plug 'derekwyatt/vim-fswitch'
 Plug 'kyoz/purify', { 'rtp': 'vim' }
 
 " Tags use gtags automatic management
-"Plug 'aceofall/gtags.vim'
-"Plug 'joereynolds/gtags-scope'
-"Plug 'ronakg/quickr-cscope.vim'
-" or
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'skywind3000/gutentags_plus'
 Plug 'skywind3000/vim-preview'
@@ -101,20 +97,6 @@ let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_folding_disabled = 1
 " markdown confirguration end
 
-"let GtagsCscope_Auto_Load = 1
-"let CtagsCscope_Auto_Map = 1
-"let GtagsCscope_Quiet = 1
-"let g:quickr_cscope_program = "gtags-cscope"
-"let g:quickr_cscope_db_file = "GTAGS"
-"let g:quickr_cscope_autoload_db = 0
-" 自动打开Tlist
-"let Tlist_Auto_Open = 1
-"let Tlist_Ctags_Cmd="/usr/bin/gtags-cscope"
-"set cscopetag " 使用 cscope 作为 tags 命令
-"set cscopeprg='gtags-cscope' " 使用 gtags-cscope 代替 cscope
-"set cscopequickfix=s-,c-,d-,i-,t-,e-,a-
-
-
 " enable gtags module start
 let g:gutentags_modules = ['ctags', 'gtags_cscope']
 " config project root markers.
@@ -126,15 +108,6 @@ let g:gutentags_plus_switch = 1
 let g:gutentags_plus_nomap = 1
 " enable gtags module end
 
-" 设置nerdTree
-"let NERDTreeChDirMode=1
-"let NERDTreeShowBookmarks=1
-"let NERDTreeShowFiles=1
-"let NERDTreeWinPos=left
-"let g:NERDTreeHijackNetrw = 1
-" 自动打开
-"autocmd StdinReadPre * let s:std_in=1
-"autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 " 只有一个窗口时关闭NerdTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 " nerdTree end
@@ -144,11 +117,7 @@ let g:autoformat_autoindent = 0
 let g:autoformat_retab = 0
 let g:autoformat_remove_trailing_spaces = 0
 " 输出AutoFormat信息
-" let g:autoformat_verbosemode=1
-"au BufWrite * :Autoformat
 autocmd FileType vim,tex let b:autoformat_autoindent=0
-
-"autocmd  BufReadPost,FileReadPost   *.[ch]  :silent %!indent -l0 -npro -kr -i8 -ts8 -sob -l80 -ss -ncs -cp1
 
 " 高亮
 highlight CTagsGlobalVariable ctermfg=5 cterm=bold
@@ -164,10 +133,6 @@ set statusline=[%n]\ %f%m%r%h\ \|\ \ pwd:\ %{CurDir()}\ \ \|%=\|\ %l,%c\ %p%%\ \
 
 " 高亮鼠标当前行
 set cul
-" 高亮鼠标当前列
-"set cuc
-"set nocompatible              " be iMproved, required
-"
 "搜索时高亮
 set incsearch
 set hlsearch
@@ -177,25 +142,12 @@ set viminfo+=!
 
 " 不适用vi 的键盘模式
 set nocompatible
-
 set laststatus=2
-"set tw=78 fo+=Mm
-
-" 设置tab转换成4个空格
-"set tabstop=4
-"set softtabstop=4
-"set shiftwidth=4
-"set noexpandtab
 set history=10000
 
 " 不备份文件
 set nobackup
 set noswapfile
-
-" 自动对齐
-"set cindent
-"set autoindent
-"set smartindent
 
 " 去掉vim滴滴声
 set noeb
@@ -216,6 +168,7 @@ set magic
 
 " vim 右下角显示未完成的命令
 set showcmd
+" 终端颜色256色
 set t_Co=256
 
 set showtabline=2
@@ -223,9 +176,6 @@ set showtabline=2
 " 显示tab和尾部的空格
 set listchars=tab:>-,trail:■
 "set list
-
-" 回车换行，参数自动对齐到括号
-"set cino+=(0,w1,{0,0},:0,t0,+10
 
 " 自动保存
 set autoread
@@ -253,8 +203,6 @@ let g:EasyMotion_do_mapping = 0
 let g:EasyMotion_smartcase = 1
 let g:fzf_command_prefix = 'Fzf'
 
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
 "开启文件类型侦测
 filetype on
 
@@ -271,12 +219,11 @@ endif
 autocmd FileType qf nnoremap <silent><buffer> p :PreviewQuickfix<cr>
 autocmd FileType qf nnoremap <silent><buffer> P :PreviewClose<cr>
 
-"set autochdir
+""set ack.vim 
 "if executable('ag')
-"	set grepprg=ag\ --nogroup\ --nocolor\ --column
-"	let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-"	let g:ackprg = 'ag -C --nogroup --nocolor --column'
+"	let g:ackprg = 'ag --vimgrep'
 "endif
+""set ack.vim end
 
 " cS delete space at end of line
 nmap cS :%s/\s\+$//g<CR>:noh<CR>
@@ -309,7 +256,6 @@ nmap fk <Plug>(easymotion-k)
 
 " 取消高亮
 nmap <silent> <leader>h :nohls<CR>
-nmap <silent> <leader>ss :Ack! <C-R>=expand("<cword>")<CR><CR>
 
 imap <c-k> <Up>
 imap <c-j> <Down>
