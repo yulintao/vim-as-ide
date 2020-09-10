@@ -49,8 +49,18 @@ ctrl o 		 后跳 ctrl i 前跳
 V		大写`v`表示选中整行
 ctrl hjkl 	 分别为光标定位到不同的窗口
 f7/8		 搜索光标处函数的引用位置
-cs find s xxx 搜索字符串
-cs find t xxx 搜索字符串
+
+Ctrl W ] 用新窗口预览
+Ctrl W } 使用preview窗口预览
+leader gs 查找符号位置
+leader gc 查找符号调用位置
+leader gg 查找符号定义位置
+
+上面搜索出来之后，光标直接定位到quickfix窗口，在下面选择一个按P就可以打开快速预览
+Ctrl - W + z 关闭预览窗口
+leader qo 打开quickfix列表
+leader qc 关闭quickfix列表
+
 ta flags 		查找flags这个位置
 shift * 		高亮向后查找
 shift # 		高亮向前查找
@@ -74,7 +84,12 @@ m x		在当前位置打一个标记x，等需要跳回这个位置的时候直�
 ,tdd		图表快速删除行
 ,tic[C]		当前列表后[前]插入一列图表
 ,tr		图表重新格式化
+画图方法,首先开启画图模式',tm' 然后输入'|'画方格，然后输入字符，回车后，输入两次'||'画中间分割线
+|-----------|------------|
+| akjfl;afd | laj;dlfja; |
+|-----------|------------|
 
+drawit使用方法，直接输入:DIstart/Distop开启画图或者关闭画图，其余查看help
 -------------------------------
 vim 同时打开多个文件的编辑方法
 buffers 查看都有哪些文件
@@ -167,17 +182,6 @@ q       关闭 NerdTree 窗口
 :tabp   前一个 tab
 :tabn   后一个 tab
 
-```
-# 代码预览
-```
-Ctrl - W + ] 用新窗口预览
-Ctrl - W + } 使用preview窗口预览
-当前代码种加入自动化tags管理插件，默认不需要自己生成tags，插件自动生成存放于.git同级目录
-leader - g - s 查找符号位置
-leader - g - c 查找符号调用位置
-leader - g - g 查找符号定义位置
-上面搜索出来之后，光标直接定位到quickfix窗口，在下面选择一个按P就可以打开快速预览
-Ctrl - W + z 关闭预览窗口
 ```
 
 # 其他部分
