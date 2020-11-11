@@ -7,6 +7,10 @@ Plug 'mileszs/ack.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'derekwyatt/vim-fswitch'
 
+"" vim-mark
+"Plug 'inkarkat/vim-ingo-library'
+"Plug 'inkarkat/vim-mark'
+
 " vim color themes
 Plug 'kyoz/purify', { 'rtp': 'vim' }
 
@@ -140,6 +144,9 @@ set hlsearch
 " 保存全局变量
 set viminfo+=!
 
+" 光标上下保留行数
+set scrolloff=2
+
 " 不适用vi 的键盘模式
 set nocompatible
 set laststatus=2
@@ -219,11 +226,11 @@ endif
 autocmd FileType qf nnoremap <silent><buffer> p :PreviewQuickfix<cr>
 autocmd FileType qf nnoremap <silent><buffer> P :PreviewClose<cr>
 
-""set ack.vim 
-"if executable('ag')
-"	let g:ackprg = 'ag --vimgrep'
-"endif
-""set ack.vim end
+"set ack.vim 
+if executable('ag')
+	let g:ackprg = 'ag --vimgrep'
+endif
+"set ack.vim end
 
 " cS delete space at end of line
 nmap cS :%s/\s\+$//g<CR>:noh<CR>
@@ -266,7 +273,7 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
-noremap <silent> <leader>qo :10 copen <CR>
+noremap <silent> <leader>qo :15 copen <CR>
 noremap <silent> <leader>qc :cclose <CR>
 
 noremap <silent> <leader>gs :GscopeFind s <C-R><C-W><CR>
