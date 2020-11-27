@@ -107,10 +107,11 @@ source $ZSH/oh-my-zsh.sh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 #export FZF_DEFAULT_COMMAND="fd --exclude={*.o,.git,.idea,.vscode,.sass-cache,node_modules,build} --type f"
 export FZF_DEFAULT_COMMAND="fd --type f"
-export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --preview '(highlight -O ansi {} || cat {}) 2> /dev/null | head -500'"
+export FZF_DEFAULT_OPTS="--height 40% --layout=reverse"
+#export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --preview '(highlight -O ansi {} || cat {}) 2> /dev/null | head -500'"
 
 
-export PATH="$PATH:/home/yult/work-proj/universal-ctags/ctags-work/bin"
+#export PATH="$PATH:/home/yult/work-proj/universal-ctags/ctags-work/bin"
 ##export LD_LIBRARY_PATH=$PWD
 #export RTE_SDK=/home/yult/work-proj/dpdk
 #export RTE_TARGET=x86_64-native-linuxapp-gcc
@@ -120,8 +121,12 @@ export LANG="en_US.UTF-8"
 fi
 alias r="ranger"
 alias v="vim"
+alias tmux='tmux -2'
 #alias autoformat="indent -n -il0 -npro -kr -i8 -ts8 -sob -l80 -ss -ncs -cp1"
 [[ -s /home/yult/.autojump/etc/profile.d/autojump.sh ]] && source /home/yult/.autojump/etc/profile.d/autojump.sh
 
+export EXTRA_CFLAGS="-O0 -g"
 export RTE_SDK=/home/yult/dpdk
 export RTE_TARGET=x86_64-native-linuxapp-gcc
+export LD_LIBRARY_PATH=/home/yult/dpdk/x86_64-native-linuxapp-gcc/lib
+export PKG_CONFIG_PATH=/home/yult/dpdk/x86_64-native-linuxapp-gcc/lib/pkgconfig

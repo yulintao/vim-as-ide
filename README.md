@@ -28,14 +28,31 @@ gtags
 ```
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 export FZF_DEFAULT_COMMAND="fd --type f"
-export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --preview '(highlight -O ansi {} || cat {}) 2> /dev/null | head -500'"
+export FZF_DEFAULT_OPTS="--height 40% --layout=reverse "
+
+```
+这里面是放到FZF OPTS中的preview，目前暂时不需要
+--preview '(highlight -O ansi {} || cat {}) 2> /dev/null | head -500'
+```
+
 需要进行忽略的目录或者文件都放到.gitignore里面
 
+if [ "$TERM"="linux" ] ;then
+export LANG="en_US.UTF-8"
+fi
+
+# vim 与 tmux 配色不一致问题
+alias tmux='tmux -2'
+
+# 开发调试相关
+export EXTRA_CFLAGS="-O0 -ggdb3"
+export CFLAGS="-O0 -ggdb3 "
+export RTE_SDK=/home/`whoami`/dpdk
+export RTE_TARGET=x86_64-native-linuxapp-gcc
+export LD_LIBRARY_PATH=/home/`whoami`/dpdk/x86_64-native-linuxapp-gcc/lib
+export PKG_CONFIG_PATH=/home/`whoami`/dpdk/x86_64-native-linuxapp-gcc/lib/pkgconfig
 
 export PATH="$PATH:/home/`whoami`/universal-ctags/ctags-work/bin"
-export RTE_SDK=$PWD/dpdk
-export RTE_TARGET=x86_64-native-linuxapp-gcc
-export LD_LIBRARY_PATH=$PWD
 
 ```
 
