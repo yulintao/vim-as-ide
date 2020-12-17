@@ -67,6 +67,13 @@ V		大写`v`表示选中整行
 ctrl hjkl 	 分别为光标定位到不同的窗口
 f7/8		 搜索光标处函数的引用位置
 
+vs		竖切窗口
+sp		横切窗口
+botright	竖切窗口时将新建的窗口放到右边
+topleft		横切窗口时将新建的窗口放到下面
+例如：botright vs
+
+
 Ctrl W ] 用新窗口预览
 Ctrl W } 使用preview窗口预览
 leader gs 查找符号位置
