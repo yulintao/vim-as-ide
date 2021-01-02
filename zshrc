@@ -121,6 +121,7 @@ export LANG="en_US.UTF-8"
 fi
 alias r="ranger"
 alias v="vim"
+# 主要是因为vim 与tmux 颜色不一致问题//
 alias tmux='tmux -2'
 #alias autoformat="indent -n -il0 -npro -kr -i8 -ts8 -sob -l80 -ss -ncs -cp1"
 [[ -s /home/yult/.autojump/etc/profile.d/autojump.sh ]] && source /home/yult/.autojump/etc/profile.d/autojump.sh

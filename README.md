@@ -57,6 +57,7 @@ export PATH="$PATH:/home/`whoami`/universal-ctags/ctags-work/bin"
 ```
 
 # 快捷键
+
 ```
 主要的快捷键都在vimrc文件中
 leader       定义为,
@@ -123,6 +124,13 @@ buffers 查看都有哪些文件
 :bn 下一个文件
 :bp 上一个文件
 :b 文件名   打开对应文件
+
+zo 打开一个折叠。
+zc 关闭一个折叠。
+za 当关闭时打开，当打开时关闭。
+zo、zc、za 对应 zO、zC 和 zA；以递归形式改变折叠状态。
+zR 打开全部折叠。
+zM 关闭全部折叠。
 
 ```
 # 快速选择

@@ -7,16 +7,17 @@ Plug 'mileszs/ack.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'derekwyatt/vim-fswitch'
 
-"" vim-mark
-"Plug 'inkarkat/vim-ingo-library'
-"Plug 'inkarkat/vim-mark'
-
 " vim color themes
 Plug 'kyoz/purify', { 'rtp': 'vim' }
+
+" vim-mark
+Plug 'inkarkat/vim-ingo-library'
+Plug 'inkarkat/vim-mark'
 
 " Tags use gtags automatic management
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'skywind3000/gutentags_plus'
+"Plug 'skywind3000/vim-quickui'
 Plug 'skywind3000/vim-preview'
 
 " markdown 相关
@@ -96,10 +97,10 @@ call plug#end()            " required
 
 "" ccls end
 
-" markdown confirguration start
-let g:vim_markdown_frontmatter = 1
-let g:vim_markdown_folding_disabled = 1
-" markdown confirguration end
+"" markdown confirguration start
+"let g:vim_markdown_frontmatter = 1
+"let g:vim_markdown_folding_disabled = 1
+"" markdown confirguration end
 
 " enable gtags module start
 let g:gutentags_modules = ['ctags', 'gtags_cscope']
@@ -111,6 +112,18 @@ let g:gutentags_project_root = ['.root']
 let g:gutentags_plus_switch = 1
 let g:gutentags_plus_nomap = 1
 " enable gtags module end
+
+""gtags 设置项
+"set cscopetag " 使用 cscope 作为 tags 命令
+"set cscopeprg='gtags-cscope' " 使用 gtags-cscope 代替 cscope
+"let GtagsCscope_Auto_Load = 1
+"let CtagsCscope_Auto_Map = 1
+"let GtagsCscope_Quiet = 1
+"let gtags_file=findfile("GTAGS", ";")
+"if !empty(gtags_file)
+"    exe "cs add" gtags_file
+"endif
+""
 
 " 只有一个窗口时关闭NerdTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
@@ -144,7 +157,6 @@ set hlsearch
 " 保存全局变量
 set viminfo+=!
 
-" 光标上下保留行数
 set scrolloff=2
 
 " 不适用vi 的键盘模式
@@ -212,6 +224,9 @@ let g:fzf_command_prefix = 'Fzf'
 
 "开启文件类型侦测
 filetype on
+
+" 关闭自动折叠功能
+set nofoldenable
 
 "根据文件类型加载对应插件
 filetype plugin indent on
