@@ -24,6 +24,7 @@ gtags
 
 
 使用Leaderf的时候需要global 的版本大于 6.6.5
+gtags 使用.globalrc 文件作为配置文件，需要忽略的目录在skip后面添加，最后以：结尾
 ```
 
 # 这部分需要添加到.bashrc中
