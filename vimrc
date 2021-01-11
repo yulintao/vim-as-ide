@@ -14,11 +14,11 @@ Plug 'kyoz/purify', { 'rtp': 'vim' }
 Plug 'inkarkat/vim-ingo-library'
 Plug 'inkarkat/vim-mark'
 
-" Tags use gtags automatic management
-Plug 'ludovicchabant/vim-gutentags'
-Plug 'skywind3000/gutentags_plus'
-"Plug 'skywind3000/vim-quickui'
-Plug 'skywind3000/vim-preview'
+"" Tags use gtags automatic management
+"Plug 'ludovicchabant/vim-gutentags'
+"Plug 'skywind3000/gutentags_plus'
+""Plug 'skywind3000/vim-quickui'
+"Plug 'skywind3000/vim-preview'
 
 " markdown 相关
 " python 图表
@@ -36,10 +36,10 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 Plug 'vim-scripts/DrawIt'
 " drawit end
 
-Plug 'junegunn/fzf', { 'dir': '~/.vim/plugged/fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
+"Plug 'junegunn/fzf', { 'dir': '~/.vim/plugged/fzf', 'do': './install --all' }
+"Plug 'junegunn/fzf.vim'
 
-"Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
+Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
 
 "Plug 'Valloric/YouCompleteMe'
 
@@ -102,16 +102,17 @@ call plug#end()            " required
 "let g:vim_markdown_folding_disabled = 1
 "" markdown confirguration end
 
-" enable gtags module start
-let g:gutentags_modules = ['ctags', 'gtags_cscope']
-" config project root markers.
-let g:gutentags_project_root = ['.root']
-" generate datebases in my cache directory, prevent gtags files polluting my project
-" let g:gutentags_cache_dir = expand('~/.cache/tags')
-" change focus to quickfix window after search (optional).
-let g:gutentags_plus_switch = 1
-let g:gutentags_plus_nomap = 1
-" enable gtags module end
+"" enable gtags module start
+"let g:gutentags_modules = ['gtags_cscope']
+"" config project root markers.
+"let g:gutentags_project_root = ['.root']
+"" generate datebases in my cache directory, prevent gtags files polluting my project
+"let g:gutentags_cache_dir = expand('~/.cache/tags')
+"
+"" change focus to quickfix window after search (optional).
+"let g:gutentags_plus_switch = 1
+"let g:gutentags_plus_nomap = 1
+"" enable gtags module end
 
 ""gtags 设置项
 "set cscopetag " 使用 cscope 作为 tags 命令
@@ -123,7 +124,7 @@ let g:gutentags_plus_nomap = 1
 "if !empty(gtags_file)
 "    exe "cs add" gtags_file
 "endif
-""
+
 
 " 只有一个窗口时关闭NerdTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
@@ -207,7 +208,7 @@ set nu
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
 
 " 设置TAGS文件路径
-set tags+=./tags
+"set tags+=./GTAGS
 let Tlist_Show_One_File=1
 let Tlist_Exit_OnlyWindow=1
 let Tlist_Show_Menu=1
@@ -225,7 +226,6 @@ let g:fzf_command_prefix = 'Fzf'
 "开启文件类型侦测
 filetype on
 
-" 关闭自动折叠功能
 set nofoldenable
 
 "根据文件类型加载对应插件
@@ -254,21 +254,21 @@ nmap cM :%s/\r$//g<CR>:noh<CR>
 
 "nmap <F3> :cnext<CR>
 "nmap <F4> :cpre<CR>
-nmap <silent> <F9> :NERDTreeFind<CR>
-" swap between .c and .h
-nmap <silent> <Leader>sw :FSHere<CR>
-" autoformat
+"nmap <silent> <F9> :NERDTreeFind<CR>
+"" swap between .c and .h
+"nmap <silent> <Leader>sw :FSHere<CR>
+"" autoformat
 nmap <silent> <Leader>af :Autoformat<CR>:w<CR>
-" git diff 比较当前文件
-nmap <silent> <leader>df :Gvdiff<CR>
-" 快速查找文件
-nmap <silent> <leader>ff :FzfFiles<CR>
-" 在当前缓存区中切换文件
-nmap <silent> <leader>fb :FzfBuffers<CR>
-" 在当前文件中搜索关键字
-nmap <silent> <leader>ft :FzfBTags<CR>
-nmap <silent> <leader>fT :FzfTags<CR>
-nmap <silent> <leader>fs :FzfBLines<CR>
+"" git diff 比较当前文件
+"nmap <silent> <leader>df :Gvdiff<CR>
+"" 快速查找文件
+"nmap <silent> <leader>ff :FzfFiles<CR>
+"" 在当前缓存区中切换文件
+"nmap <silent> <leader>fb :FzfBuffers<CR>
+"" 在当前文件中搜索关键字
+"nmap <silent> <leader>ft :FzfBTags<CR>
+"nmap <silent> <leader>fT :FzfTags<CR>
+"nmap <silent> <leader>fs :FzfBLines<CR>
 " 查找单个字符
 nmap fs <Plug>(easymotion-s)
 " 向下移动
@@ -291,9 +291,9 @@ nnoremap <C-H> <C-W><C-H>
 noremap <silent> <leader>qo :15 copen <CR>
 noremap <silent> <leader>qc :cclose <CR>
 
-noremap <silent> <leader>gs :GscopeFind s <C-R><C-W><CR>
-noremap <silent> <leader>gg :GscopeFind g <C-R><C-W><CR>
-noremap <silent> <leader>gc :GscopeFind c <C-R><C-W><CR>
+"noremap <silent> <leader>gs :GscopeFind s <C-R><C-W><CR>
+"noremap <silent> <leader>gg :GscopeFind g <C-R><C-W><CR>
+"noremap <silent> <leader>gc :GscopeFind c <C-R><C-W><CR>
 "noremap <silent> <leader>gt :GscopeFind t <C-R><C-W><cr>
 "noremap <silent> <leader>ge :GscopeFind e <C-R><C-W><cr>
 "noremap <silent> <leader>gf :GscopeFind f <C-R>=expand("<cfile>")<cr><cr>
@@ -301,3 +301,46 @@ noremap <silent> <leader>gc :GscopeFind c <C-R><C-W><CR>
 "noremap <silent> <leader>gd :GscopeFind d <C-R><C-W><cr>
 "noremap <silent> <leader>ga :GscopeFind a <C-R><C-W><cr>
 "noremap <silent> <leader>gz :GscopeFind z <C-R><C-W><cr>
+
+" use LeaderF
+let $GTAGSLABEL = 'pygments'
+let $GTAGSCONF = '/home/yult/.globalrc'
+" should use `Leaderf gtags --update` first
+"let g:Lf_GtagsGutentags = 1
+let g:Lf_GtagsAutoGenerate = 1
+"let g:Lf_CacheDirectory = expand('~')
+"let g:gutentags_cache_dir = expand(g:Lf_CacheDirectory.'/.LfCache/gtags')
+
+let g:Lf_Gtagslabel = 'pygments'
+"don't show the help in normal mode
+let g:Lf_HideHelp = 1
+let g:Lf_UseCache = 0
+let g:Lf_UseVersionControlTool = 0
+let g:Lf_IgnoreCurrentBufferName = 1
+ " popup mode
+"let g:Lf_WindowPosition = 'popup'
+let g:Lf_PreviewInPopup = 1
+let g:Lf_StlSeparator = { 'left': "\ue0b0", 'right': "\ue0b2", 'font': "DejaVu Sans Mono for Powerline" }
+"let g:Lf_PreviewResult = {'Function': 0, 'BufTag': 0 }
+
+let g:Lf_ShortcutF = "<leader>ff"
+noremap <leader>fb :<C-U><C-R>=printf("Leaderf buffer %s", "")<CR><CR>
+noremap <leader>fm :<C-U><C-R>=printf("Leaderf mru %s", "")<CR><CR>
+noremap <leader>ft :<C-U><C-R>=printf("Leaderf bufTag %s", "")<CR><CR>
+noremap <leader>fl :<C-U><C-R>=printf("Leaderf line %s", "")<CR><CR>
+noremap <leader>fT :Leaderf gtags<CR>
+
+noremap <C-B> :<C-U><C-R>=printf("Leaderf! rg --current-buffer -e %s ", expand("<cword>"))<CR>
+noremap <C-F> :<C-U><C-R>=printf("Leaderf! rg -e %s ", expand("<cword>"))<CR>
+" search visually selected text literally
+xnoremap gf :<C-U><C-R>=printf("Leaderf! rg -F -e %s ", leaderf#Rg#visual())<CR>
+noremap go :<C-U>Leaderf! rg --recall<CR>
+
+noremap <leader>fr :<C-U><C-R>=printf("Leaderf! gtags -r %s --auto-jump", expand("<cword>"))<CR><CR>
+noremap <leader>fd :<C-U><C-R>=printf("Leaderf! gtags -d %s --auto-jump", expand("<cword>"))<CR><CR>
+noremap <leader>fo :<C-U><C-R>=printf("Leaderf! gtags --recall %s", "")<CR><CR>
+noremap <leader>fn :<C-U><C-R>=printf("Leaderf gtags --next %s", "")<CR><CR>
+noremap <leader>fp :<C-U><C-R>=printf("Leaderf gtags --previous %s", "")<CR><CR>
+
+
+
