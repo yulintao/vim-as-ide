@@ -16,11 +16,14 @@ cscope -Rqb
 apt-get install silversearcher-ag
 https://github.com/universal-ctags/ctags.git
 https://github.com/sharkdp/fd/releases/download/v7.1.0/fd-musl_7.1.0_amd64.deb
+https://github.com/BurntSushi/ripgrep/releases/download/12.1.1/ripgrep_12.1.1_amd64.deb
 
 或者使用
 pacman -Ss global
 gtags
 
+
+使用Leaderf的时候需要global 的版本大于 6.6.5
 ```
 
 # 这部分需要添加到.bashrc中
