@@ -159,6 +159,7 @@ set hlsearch
 set viminfo+=!
 
 set scrolloff=2
+set updatetime=300
 
 " 不适用vi 的键盘模式
 set nocompatible
@@ -303,15 +304,16 @@ noremap <silent> <leader>qc :cclose <CR>
 "noremap <silent> <leader>gz :GscopeFind z <C-R><C-W><cr>
 
 " use LeaderF
-let $GTAGSLABEL = 'pygments'
+let $GTAGSLABEL = 'native-pygments'
 let $GTAGSCONF = '/home/yult/.globalrc'
 " should use `Leaderf gtags --update` first
 "let g:Lf_GtagsGutentags = 1
 let g:Lf_GtagsAutoGenerate = 1
+let g:Lf_GtagsAutoUpdate = 1
 "let g:Lf_CacheDirectory = expand('~')
 "let g:gutentags_cache_dir = expand(g:Lf_CacheDirectory.'/.LfCache/gtags')
 
-let g:Lf_Gtagslabel = 'pygments'
+let g:Lf_Gtagslabel = 'native-pygments'
 "don't show the help in normal mode
 let g:Lf_HideHelp = 1
 let g:Lf_UseCache = 0
@@ -329,9 +331,10 @@ noremap <leader>fm :<C-U><C-R>=printf("Leaderf mru %s", "")<CR><CR>
 noremap <leader>ft :<C-U><C-R>=printf("Leaderf bufTag %s", "")<CR><CR>
 noremap <leader>fl :<C-U><C-R>=printf("Leaderf line %s", "")<CR><CR>
 noremap <leader>fT :Leaderf gtags<CR>
+"nmap <silent> <leader>ff :FzfFiles<CR>
 
 noremap <C-B> :<C-U><C-R>=printf("Leaderf! rg --current-buffer -e %s ", expand("<cword>"))<CR>
-noremap <C-F> :<C-U><C-R>=printf("Leaderf! rg -e %s ", expand("<cword>"))<CR>
+noremap <C-F> :<C-U><C-R>=printf("Leaderf! rg -e %s", expand("<cfile>"))<CR>
 " search visually selected text literally
 xnoremap gf :<C-U><C-R>=printf("Leaderf! rg -F -e %s ", leaderf#Rg#visual())<CR>
 noremap go :<C-U>Leaderf! rg --recall<CR>
